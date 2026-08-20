@@ -4,9 +4,14 @@ import { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
 import type { GlobeMethods } from "react-globe.gl";
 import { assetUrl, colorForScore, meltHeatColor, type CityPayload } from "@/lib/payload";
+import ZoomControls from "./ZoomControls";
 
 // react-globe.gl touches `window` at import time, so it can only load client-side.
 const Globe = dynamic(() => import("react-globe.gl"), { ssr: false });
+
+const DEFAULT_ALTITUDE = 2.2;
+const MIN_ALTITUDE = 0.5;
+const MAX_ALTITUDE = 3.5;
 
 interface MeltGlobeProps {
   cities: CityPayload[];
@@ -48,13 +53,31 @@ export default function MeltGlobe({ cities, onSelectCity }: MeltGlobeProps) {
     const controls = globeRef.current?.controls();
     if (controls) {
       controls.autoRotate = false;
-      controls.enableZoom = true;
+      // Wheel-to-zoom fights the page's own scroll when the cursor is over
+      // a full-screen globe, so zoom is button-driven instead (ZoomControls).
+      controls.enableZoom = false;
     }
-    globeRef.current?.pointOfView({ altitude: 2.2 }, 0);
+    globeRef.current?.pointOfView({ altitude: DEFAULT_ALTITUDE }, 0);
+  };
+
+  const zoomBy = (factor: number) => {
+    const globe = globeRef.current;
+    if (!globe) return;
+    const current = globe.pointOfView().altitude;
+    const next = Math.min(MAX_ALTITUDE, Math.max(MIN_ALTITUDE, current * factor));
+    globe.pointOfView({ altitude: next }, 300);
   };
 
   return (
-    <div ref={ref} style={{ width: "100%", height: "100%" }}>
+    <div
+      ref={ref}
+      style={{ width: "100%", height: "100%" }}
+      // Stop the wheel event before it ever reaches the globe's own canvas
+      // listener (OrbitControls re-enables itself on resize, so relying on
+      // controls.enableZoom alone isn't reliable) — this lets the wheel fall
+      // through to the page's normal scroll instead of zooming the globe.
+      onWheelCapture={(e) => e.stopPropagation()}
+    >
       {size.width > 0 && (
         <Globe
           ref={globeRef}
@@ -92,6 +115,7 @@ export default function MeltGlobe({ cities, onSelectCity }: MeltGlobeProps) {
           onPointClick={(d) => onSelectCity(d as CityPayload)}
         />
       )}
+      {size.width > 0 && <ZoomControls onZoomIn={() => zoomBy(0.75)} onZoomOut={() => zoomBy(1.35)} />}
     </div>
   );
 }
