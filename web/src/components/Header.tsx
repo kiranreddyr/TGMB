@@ -5,6 +5,7 @@ interface HeaderProps {
   cityCount: number;
 }
 
+/** Small status badge over the globe — title/tagline now live in IntroSection above. */
 export default function Header({ generatedAt, cityCount }: HeaderProps) {
   const asOf = generatedAt
     ? new Date(generatedAt).toLocaleString(undefined, {
@@ -15,15 +16,11 @@ export default function Header({ generatedAt, cityCount }: HeaderProps) {
       })
     : null;
 
+  if (!asOf) return null;
+
   return (
     <div className={styles.header}>
-      <div className={styles.title}>The Global Melt Belt</div>
-      <div className={styles.tagline}>Where on Earth it&rsquo;s perfect ice cream weather, right now.</div>
-      {asOf && (
-        <div className={styles.asOf}>
-          As of {asOf} your time · {cityCount} cities
-        </div>
-      )}
+      As of {asOf} your time · {cityCount} cities
     </div>
   );
 }

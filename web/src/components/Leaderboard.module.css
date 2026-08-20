@@ -1,13 +1,7 @@
 .columns {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
-}
-
-@media (max-width: 640px) {
-  .columns {
-    grid-template-columns: 1fr;
-  }
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
 }
 
 .columnTitle {

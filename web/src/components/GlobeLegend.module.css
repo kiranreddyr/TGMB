@@ -1,8 +1,6 @@
 .legend {
   position: absolute;
-  /* Cleared above the "scroll for analysis" hint, which sits at bottom:16
-     with its own height — verified with no overlap down to 375px wide. */
-  bottom: 64px;
+  bottom: 16px;
   left: 16px;
   background: var(--panel-bg);
   border: 1px solid var(--panel-border);

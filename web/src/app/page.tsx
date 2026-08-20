@@ -4,6 +4,7 @@ import { useState } from "react";
 import MeltGlobe from "@/components/MeltGlobe";
 import Header from "@/components/Header";
 import GlobeLegend from "@/components/GlobeLegend";
+import IntroSection from "@/components/IntroSection";
 import AnalysisPanel from "@/components/AnalysisPanel";
 import { useMeltPayload } from "@/lib/useMeltPayload";
 import type { CityPayload } from "@/lib/payload";
@@ -15,37 +16,34 @@ export default function Home() {
 
   return (
     <main className={styles.container}>
-      <div className={styles.globeSection}>
-        {payload && <MeltGlobe cities={payload.cities} onSelectCity={setSelectedCity} />}
+      <IntroSection cityCount={payload?.cityCount ?? 0} />
 
-        {loading && !payload && <div className={styles.statusOverlay}>Loading the melt belt…</div>}
+      <div className={styles.mainRow}>
+        <div className={styles.globeSection}>
+          {payload && <MeltGlobe cities={payload.cities} onSelectCity={setSelectedCity} />}
 
-        {error && !payload && (
-          <div className={styles.statusOverlay}>
-            Couldn&rsquo;t load live data ({error}). Run <code>npm run hourly-job</code> in the repo root, then{" "}
-            <code>npm run sync-web-data</code>.
-          </div>
-        )}
+          {loading && !payload && <div className={styles.statusOverlay}>Loading the melt belt…</div>}
 
-        <Header generatedAt={payload?.generatedAt ?? null} cityCount={payload?.cityCount ?? 0} />
+          {error && !payload && (
+            <div className={styles.statusOverlay}>
+              Couldn&rsquo;t load live data ({error}). Run <code>npm run hourly-job</code> in the repo root, then{" "}
+              <code>npm run sync-web-data</code>.
+            </div>
+          )}
 
-        {payload && <GlobeLegend />}
+          <Header generatedAt={payload?.generatedAt ?? null} cityCount={payload?.cityCount ?? 0} />
 
-        {payload && (
-          <div className={styles.scrollHint}>
-            <span>Scroll for analysis</span>
-            <span>↓</span>
-          </div>
-        )}
-      </div>
+          {payload && <GlobeLegend />}
+        </div>
 
-      <div className={styles.analysisSection}>
-        <AnalysisPanel
-          cities={payload?.cities ?? []}
-          selectedCity={selectedCity}
-          onSelectCity={setSelectedCity}
-          onDeselect={() => setSelectedCity(null)}
-        />
+        <div className={styles.analysisSection}>
+          <AnalysisPanel
+            cities={payload?.cities ?? []}
+            selectedCity={selectedCity}
+            onSelectCity={setSelectedCity}
+            onDeselect={() => setSelectedCity(null)}
+          />
+        </div>
       </div>
     </main>
   );

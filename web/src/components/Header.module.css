@@ -2,24 +2,12 @@
   position: absolute;
   top: 16px;
   left: 16px;
-  max-width: min(360px, calc(100vw - 32px));
-  pointer-events: none;
-}
-
-.title {
-  font-size: 20px;
-  font-weight: 700;
-  letter-spacing: -0.01em;
-}
-
-.tagline {
-  color: var(--muted);
-  font-size: 13px;
-  margin-top: 4px;
-}
-
-.asOf {
+  background: var(--panel-bg);
+  border: 1px solid var(--panel-border);
+  border-radius: 999px;
+  padding: 8px 14px;
+  backdrop-filter: blur(10px);
   color: var(--muted);
   font-size: 12px;
-  margin-top: 10px;
+  max-width: min(320px, calc(100vw - 32px));
 }

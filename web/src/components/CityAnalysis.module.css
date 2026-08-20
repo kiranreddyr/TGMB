@@ -50,15 +50,9 @@
 
 .statsGrid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 14px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px;
   margin-bottom: 18px;
-}
-
-@media (max-width: 640px) {
-  .statsGrid {
-    grid-template-columns: repeat(2, 1fr);
-  }
 }
 
 .stat {
