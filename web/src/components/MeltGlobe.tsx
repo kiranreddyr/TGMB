@@ -13,6 +13,14 @@ const DEFAULT_ALTITUDE = 2.2;
 const MIN_ALTITUDE = 0.5;
 const MAX_ALTITUDE = 3.5;
 
+// A "fly to" reads as an actual flight in three beats: climb (zoom out in
+// place), glide (pan to the destination while still zoomed out), descend
+// (zoom back in and settle) — rather than one linear camera pan.
+const FLIGHT_CRUISE_ALTITUDE = 3.3;
+const FLIGHT_CLIMB_MS = 500;
+const FLIGHT_GLIDE_MS = 900;
+const FLIGHT_DESCEND_MS = 600;
+
 export interface FlyToTarget {
   lat: number;
   lon: number;
@@ -57,6 +65,11 @@ export default function MeltGlobe({ cities, onSelectCity, flyToTarget }: MeltGlo
   const { ref, size } = useContainerSize();
   const globeRef = useRef<GlobeMethods | undefined>(undefined);
   const [isReady, setIsReady] = useState(false);
+  // The zoom level to return to after a flight (or to zoom relative to via
+  // the buttons). Tracked explicitly rather than read live from
+  // pointOfView(), which mid-flight would report a value from partway
+  // through the climb/glide tween instead of where the camera actually rests.
+  const restAltitudeRef = useRef(DEFAULT_ALTITUDE);
 
   const handleGlobeReady = () => {
     const controls = globeRef.current?.controls();
@@ -70,15 +83,36 @@ export default function MeltGlobe({ cities, onSelectCity, flyToTarget }: MeltGlo
     setIsReady(true);
   };
 
-  // F5: searching a city flies the camera to it, on top of whatever zoom
-  // level is already set — direct globe/leaderboard clicks don't do this,
-  // since the user can already see the point they clicked.
+  // F5: searching a city flies the camera to it in three beats — climb,
+  // glide, descend — rather than a single pan. Direct globe/leaderboard
+  // clicks don't trigger this, since the user can already see what they
+  // clicked.
   useEffect(() => {
     if (!isReady || !flyToTarget) return;
     const globe = globeRef.current;
     if (!globe) return;
-    const altitude = Math.min(globe.pointOfView().altitude, DEFAULT_ALTITUDE);
-    globe.pointOfView({ lat: flyToTarget.lat, lng: flyToTarget.lon, altitude }, 1200);
+
+    const timeouts: ReturnType<typeof setTimeout>[] = [];
+    const settleAltitude = Math.min(restAltitudeRef.current, DEFAULT_ALTITUDE);
+
+    globe.pointOfView({ altitude: FLIGHT_CRUISE_ALTITUDE }, FLIGHT_CLIMB_MS);
+
+    timeouts.push(
+      setTimeout(() => {
+        globe.pointOfView({ lat: flyToTarget.lat, lng: flyToTarget.lon, altitude: FLIGHT_CRUISE_ALTITUDE }, FLIGHT_GLIDE_MS);
+
+        timeouts.push(
+          setTimeout(() => {
+            globe.pointOfView({ lat: flyToTarget.lat, lng: flyToTarget.lon, altitude: settleAltitude }, FLIGHT_DESCEND_MS);
+            restAltitudeRef.current = settleAltitude;
+          }, FLIGHT_GLIDE_MS),
+        );
+      }, FLIGHT_CLIMB_MS),
+    );
+
+    // A new search mid-flight cancels the rest of the previous sequence
+    // rather than letting two flights fight over the camera.
+    return () => timeouts.forEach(clearTimeout);
   }, [flyToTarget, isReady]);
 
   const zoomBy = (factor: number) => {
@@ -87,6 +121,7 @@ export default function MeltGlobe({ cities, onSelectCity, flyToTarget }: MeltGlo
     const current = globe.pointOfView().altitude;
     const next = Math.min(MAX_ALTITUDE, Math.max(MIN_ALTITUDE, current * factor));
     globe.pointOfView({ altitude: next }, 300);
+    restAltitudeRef.current = next;
   };
 
   return (
