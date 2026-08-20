@@ -34,27 +34,65 @@ If this project ever adds ads, a paid tier, sponsorship, or any revenue, the wri
 
 ## Status
 
-Currently **Phase 0 — spike**: validating that the Melt Score formula produces intuitively correct results across a wide latitude spread, before any frontend code is written. See [`src/phase0.ts`](src/phase0.ts).
+**Phase 0 (spike) and Phase 1 (pipeline) are done.** The formula is validated across latitudes and the fetch → score → JSON payload pipeline runs end to end for the full city list. Next up is Phase 2, the globe frontend.
 
 Planned phasing (see the PRD for full detail):
 
-| Phase | Scope |
-|---|---|
-| 0. Spike | Fetch 10 cities, compute scores, print to console. Validate the formula. |
-| 1. Pipeline | Full 200-city fetch, score engine, hourly job, JSON payload to CDN |
-| 2. Globe | Render globe, points, belt interpolation, city detail card |
-| 3. Polish | Leaderboard, search, methodology page, share cards, mobile tuning |
-| 4. Launch | Load test, open source the repo, publish, post to launch channels |
-| 5. P1 | Time scrubber, hemisphere chart, embeddable widget |
+| Phase | Scope | Status |
+|---|---|---|
+| 0. Spike | Fetch 10 cities, compute scores, print to console. Validate the formula. | ✅ Done |
+| 1. Pipeline | Full city fetch, score engine, hourly job, JSON payload | ✅ Done |
+| 2. Globe | Render globe, points, belt interpolation, city detail card | Not started |
+| 3. Polish | Leaderboard, search, methodology page, share cards, mobile tuning | Not started |
+| 4. Launch | Load test, open source the repo, publish, post to launch channels | Not started |
+| 5. P1 | Time scrubber, hemisphere chart, embeddable widget | Not started |
 
-## Running the Phase 0 spike
+## Pipeline
+
+```
+[Hourly scheduler]
+        |
+        v
+[Fetch worker] --batched calls--> Open-Meteo forecast API
+        |
+        v
+[Score engine] applies the Melt Score formula, versioned
+        |
+        v
+[JSON payload] latest score + 48h forward per city
+        |
+        v
+[Frontend] reads one JSON file — never calls Open-Meteo directly
+```
+
+### 1. Validate the formula (Phase 0 spike)
 
 ```bash
 npm install
 npm run phase0
 ```
 
-This fetches current weather for 10 cities spanning both hemispheres (Reykjavik to Ushuaia), computes each city's Melt Score, and prints a sanity-check table: city, local time, apparent temperature, score, band, and a one-line plain-English reason.
+Fetches current weather for 10 cities spanning both hemispheres (Reykjavik to Ushuaia), computes each city's Melt Score, and prints a sanity-check table: city, local time, apparent temperature, score, band, and a one-line plain-English reason.
+
+### 2. Build the city list (one-off / annual refresh)
+
+`data/cities.csv` is generated from the GeoNames dump using the PRD's selection order: all cities over 3M population, then capitals of countries over 5M population, then a fill pass that guarantees every latitude band — especially the southern hemisphere — has a representative city so the belt is never visually broken. Currently 213 cities.
+
+```bash
+mkdir -p data/raw
+curl -o data/raw/cities15000.zip https://download.geonames.org/export/dump/cities15000.zip
+curl -o data/raw/countryInfo.txt https://download.geonames.org/export/dump/countryInfo.txt
+unzip -o data/raw/cities15000.zip -d data/raw
+npm run build:cities
+```
+
+### 3. Run the hourly job
+
+```bash
+npm run hourly-job
+```
+
+Fetches all cities in batches (never one request per city), computes scores, and writes `data/output/melt-payload.json` — the single static file the frontend will fetch. Currently ~20 KB gzipped for 213 cities with 48h-forward series, well inside the 500 KB budget from the PRD. This is the job a scheduler (GitHub Actions cron in v1) will run hourly once deployed.
 
 ```bash
 npm run typecheck

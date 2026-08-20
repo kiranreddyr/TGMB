@@ -6,3 +6,7 @@ out/
 .DS_Store
 .env
 .env.local
+
+# Regenerable: raw GeoNames dump (~11MB) and hourly job output
+data/raw/
+data/output/

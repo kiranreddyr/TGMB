@@ -3,6 +3,17 @@ import type { WeatherInputs } from "./scoreEngine.js";
 
 const FORECAST_ENDPOINT = "https://api.open-meteo.com/v1/forecast";
 
+/** Cities per request. Open-Meteo batches lat/lon lists in one call, but we
+ * chunk rather than send all ~200 in a single URL — per PRD section 5,
+ * "a small number of requests, not 200," not "one request." */
+const DEFAULT_BATCH_SIZE = 50;
+
+/** 3 days of hourly data guarantees a full 48h-forward slice from "now" no
+ * matter where in day 1 "now" falls (worst case: hour 23 of day 1 needs data
+ * through hour 71, i.e. the last hour of day 3). */
+const FORECAST_DAYS = 3;
+const FORWARD_HOURS = 48;
+
 const HOURLY_VARS = [
   "apparent_temperature",
   "precipitation",
@@ -29,26 +40,51 @@ interface OpenMeteoHourlyResponse {
   };
 }
 
-export interface CityWeather {
-  city: City;
-  localTime: string;
+export interface HourPoint {
+  time: string;
   inputs: WeatherInputs;
 }
 
-/**
- * Fetches hourly forecast for many cities in a single batched request, per
- * PRD section 5 ("Batching efficiency"): comma-separated lat/lon lists,
- * never one request per city.
- */
-export async function fetchWeatherForCities(cities: City[]): Promise<CityWeather[]> {
-  if (cities.length === 0) return [];
+export interface CityWeather {
+  city: City;
+  current: HourPoint;
+  /** Up to 48 hourly points starting at the current hour, for sparklines. */
+  forward: HourPoint[];
+  stale: boolean;
+}
 
+export interface FetchOptions {
+  batchSize?: number;
+}
+
+/**
+ * Fetches hourly forecast for many cities, batched per PRD section 5
+ * ("Batching efficiency"): comma-separated lat/lon lists, chunked into a
+ * small number of requests rather than one per city.
+ */
+export async function fetchWeatherForCities(
+  cities: City[],
+  options: FetchOptions = {},
+): Promise<CityWeather[]> {
+  if (cities.length === 0) return [];
+  const batchSize = options.batchSize ?? DEFAULT_BATCH_SIZE;
+
+  const results: CityWeather[] = [];
+  for (let i = 0; i < cities.length; i += batchSize) {
+    const batch = cities.slice(i, i + batchSize);
+    const batchResults = await fetchBatch(batch);
+    results.push(...batchResults);
+  }
+  return results;
+}
+
+async function fetchBatch(cities: City[]): Promise<CityWeather[]> {
   const url = new URL(FORECAST_ENDPOINT);
   url.searchParams.set("latitude", cities.map((c) => c.lat).join(","));
   url.searchParams.set("longitude", cities.map((c) => c.lon).join(","));
   url.searchParams.set("hourly", HOURLY_VARS.join(","));
   url.searchParams.set("timezone", "auto");
-  url.searchParams.set("forecast_days", "1");
+  url.searchParams.set("forecast_days", String(FORECAST_DAYS));
 
   const res = await fetch(url);
   if (!res.ok) {
@@ -70,31 +106,44 @@ export async function fetchWeatherForCities(cities: City[]): Promise<CityWeather
 function toCityWeather(city: City, data: OpenMeteoHourlyResponse): CityWeather {
   const nowKey = localHourKey(new Date(), data.timezone);
   let index = data.hourly.time.indexOf(nowKey);
-  if (index === -1) {
+  const stale = index === -1;
+  if (stale) {
     // Fall back to the closest available hour rather than failing outright —
     // matches the PRD's "serve last known good, don't break" posture (section 9).
     index = data.hourly.time.length - 1;
   }
 
-  const at = <T>(arr: T[]): T => {
-    const v = arr[index];
-    if (v === undefined) throw new Error(`Missing hourly value at index ${index} for ${city.name}`);
-    return v;
-  };
+  const pointAt = (i: number): HourPoint => ({
+    time: data.hourly.time[i] ?? nowKey,
+    inputs: {
+      apparentTemperature: at(data.hourly.apparent_temperature, i, city.name),
+      precipitation: at(data.hourly.precipitation, i, city.name),
+      precipitationProbability: at(data.hourly.precipitation_probability, i, city.name),
+      windGusts10m: at(data.hourly.wind_gusts_10m, i, city.name),
+      cloudCover: at(data.hourly.cloud_cover, i, city.name),
+      isDay: at(data.hourly.is_day, i, city.name),
+      uvIndex: at(data.hourly.uv_index, i, city.name),
+    },
+  });
+
+  const forwardEnd = Math.min(index + FORWARD_HOURS, data.hourly.time.length);
+  const forward: HourPoint[] = [];
+  for (let i = index; i < forwardEnd; i++) {
+    forward.push(pointAt(i));
+  }
 
   return {
     city,
-    localTime: data.hourly.time[index] ?? nowKey,
-    inputs: {
-      apparentTemperature: at(data.hourly.apparent_temperature),
-      precipitation: at(data.hourly.precipitation),
-      precipitationProbability: at(data.hourly.precipitation_probability),
-      windGusts10m: at(data.hourly.wind_gusts_10m),
-      cloudCover: at(data.hourly.cloud_cover),
-      isDay: at(data.hourly.is_day),
-      uvIndex: at(data.hourly.uv_index),
-    },
+    current: pointAt(index),
+    forward,
+    stale,
   };
+}
+
+function at<T>(arr: T[], index: number, cityName: string): T {
+  const v = arr[index];
+  if (v === undefined) throw new Error(`Missing hourly value at index ${index} for ${cityName}`);
+  return v;
 }
 
 /**

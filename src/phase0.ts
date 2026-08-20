@@ -28,10 +28,10 @@ async function main() {
   const weather = await fetchWeatherForCities(cities);
 
   const rows = weather
-    .map(({ city, localTime, inputs }) => {
-      const result = computeMeltScore(inputs);
-      const reason = explainScore(inputs, result);
-      return { city, localTime, inputs, result, reason };
+    .map(({ city, current }) => {
+      const result = computeMeltScore(current.inputs);
+      const reason = explainScore(current.inputs, result);
+      return { city, localTime: current.time, inputs: current.inputs, result, reason };
     })
     .sort((a, b) => b.city.lat - a.city.lat); // north to south, so the latitude gradient is visible at a glance
 
