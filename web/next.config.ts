@@ -1,8 +1,8 @@
 import type { NextConfig } from "next";
 
-// Served from https://<user>.github.io/global-melt-belt/ — GitHub Pages has
-// no way to serve project pages from the domain root, so every asset path
-// needs the repo name prefixed. Set via the deploy workflow; empty locally.
+// Served from https://kiranreddyr.github.io/TGMB/ — GitHub Pages has no way
+// to serve project pages from the domain root, so every asset path needs
+// the repo name prefixed. Set via the deploy workflow; empty locally.
 const REPO_BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 const nextConfig: NextConfig = {

@@ -1,5 +1,7 @@
 # The Global Melt Belt
 
+**Live:** https://kiranreddyr.github.io/TGMB/
+
 A live web experience that shows, at any moment, where on Earth it is perfect ice cream weather.
 
 Ice cream season never ends globally — it relocates. This project renders a rotating globe with a glowing band across it: the set of places currently scoring high on a **Melt Score** derived from live weather data. The band moves west with the sun every day, and drifts north and south with the seasons.
@@ -34,18 +36,22 @@ If this project ever adds ads, a paid tier, sponsorship, or any revenue, the wri
 
 ## Status
 
-**Phase 0 (spike) and Phase 1 (pipeline) are done.** The formula is validated across latitudes and the fetch → score → JSON payload pipeline runs end to end for the full city list. Next up is Phase 2, the globe frontend.
-
 Planned phasing (see the PRD for full detail):
 
 | Phase | Scope | Status |
 |---|---|---|
 | 0. Spike | Fetch 10 cities, compute scores, print to console. Validate the formula. | ✅ Done |
 | 1. Pipeline | Full city fetch, score engine, hourly job, JSON payload | ✅ Done |
-| 2. Globe | Render globe, points, belt interpolation, city detail card | Not started |
-| 3. Polish | Leaderboard, search, methodology page, share cards, mobile tuning | Not started |
-| 4. Launch | Load test, open source the repo, publish, post to launch channels | Not started |
+| 2. Globe | Render globe, points, belt interpolation, city detail card | ✅ Done |
+| 3. Polish | Leaderboard, methodology page, mobile tuning | ✅ Done — search and share cards still open |
+| 4. Launch | Load test, open source the repo, publish, post to launch channels | In progress |
 | 5. P1 | Time scrubber, hemisphere chart, embeddable widget | Not started |
+
+## Deployment
+
+`web/` is a Next.js static export (`output: "export"`), served from GitHub Pages at the `/TGMB` sub-path — [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) rebuilds and republishes it on every push to `main`, once an hour on a cron schedule (the "scheduler" from PRD section 7), and on demand from the Actions tab. Each run re-fetches weather, rebuilds the score payload, and redeploys — nothing is committed back to the repo.
+
+**No secrets anywhere in this project.** Open-Meteo's forecast API is keyless for non-commercial use, and the frontend never calls it directly — it only ever fetches the static `melt-payload.json` this job produces, which is meant to be public (that's the point of an open methodology). If a paid Open-Meteo plan is ever needed (PRD risk R1), the key would live only as a GitHub Actions secret used server-side in this workflow — it would never ship to the browser.
 
 ## Pipeline
 
