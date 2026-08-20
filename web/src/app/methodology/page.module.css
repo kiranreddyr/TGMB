@@ -48,7 +48,7 @@
   font-size: 15px;
   line-height: 1.7;
   color: var(--muted);
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 
 .body {
@@ -61,52 +61,156 @@
   letter-spacing: 0.1em;
   text-transform: uppercase;
   color: var(--muted);
-  margin: 44px 0 14px;
+  margin: 52px 0 16px;
 }
 
-.inputsTable {
+/* ---- step-1 curve diagram ---- */
+
+.curveCard {
+  border: 1px solid var(--panel-border);
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.02);
+  padding: 20px 20px 16px;
+  margin-bottom: 22px;
+}
+
+.curveSvg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.curveGrid {
+  stroke: rgba(255, 255, 255, 0.08);
+  stroke-width: 1;
+}
+
+.curveAxisLabel {
+  font-family: var(--font-data);
+  font-size: 9px;
+  fill: #5c6478;
+}
+
+.curveArea {
+  fill: var(--accent);
+  opacity: 0.12;
+}
+
+.curveLine {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 2;
+  stroke-linejoin: round;
+}
+
+.curveCaption {
+  font-size: 12.5px;
+  color: var(--muted);
+  line-height: 1.5;
+  margin-top: 10px;
+}
+
+/* ---- plain-english steps ---- */
+
+.steps {
+  list-style: none;
   display: flex;
   flex-direction: column;
-  border: 1px solid var(--panel-border);
-  border-radius: 8px;
-  overflow: hidden;
+  gap: 26px;
 }
 
-.inputRow {
+.step {
   display: flex;
-  padding: 11px 16px;
-  border-bottom: 1px solid var(--panel-border);
-  background: rgba(255, 255, 255, 0.015);
+  gap: 16px;
 }
 
-.inputRow:last-child {
-  border-bottom: none;
-}
-
-.inputField {
+.stepNumber {
+  flex-shrink: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1px solid var(--panel-border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
   font-family: var(--font-data);
   font-size: 12px;
-  color: var(--foreground);
-  width: 220px;
+  color: var(--accent);
+}
+
+.stepTitle {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+
+.stepBody {
+  font-size: 14px;
+  line-height: 1.65;
+  color: var(--muted);
+  margin-bottom: 10px;
+}
+
+.stepRule {
+  font-family: var(--font-data);
+  font-size: 11px;
+  color: #7d879d;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--panel-border);
+  border-radius: 6px;
+  padding: 8px 12px;
+  display: inline-block;
+  line-height: 1.6;
+}
+
+/* ---- live worked example ---- */
+
+.liveExample {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  border: 1px solid var(--panel-border);
+  background: rgba(255, 201, 74, 0.04);
+  border-radius: 10px;
+  padding: 20px 22px;
+}
+
+.liveScore {
+  font-family: var(--font-data);
+  font-size: 48px;
+  font-weight: 600;
+  line-height: 1;
   flex-shrink: 0;
 }
 
-.inputRole {
-  font-size: 13px;
+.liveCity {
+  font-family: var(--font-display);
+  font-size: 22px;
+  margin-bottom: 6px;
+}
+
+.liveReason {
+  font-size: 14px;
+  line-height: 1.6;
   color: var(--muted);
 }
 
-.formula {
+/* ---- score band gradient bar ---- */
+
+.bandBar {
+  display: flex;
+  height: 14px;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.bandBarLabels {
+  display: flex;
+  justify-content: space-between;
   font-family: var(--font-data);
-  font-size: 12.5px;
-  line-height: 1.75;
-  color: var(--muted);
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid var(--panel-border);
-  border-radius: 8px;
-  padding: 22px 24px;
-  overflow-x: auto;
-  white-space: pre;
+  font-size: 10px;
+  color: #5c6478;
+  margin: 6px 0 20px;
 }
 
 .bandsTable {
@@ -125,6 +229,7 @@
   gap: 14px;
   background: rgba(8, 11, 20, 0.9);
   padding: 14px 18px;
+  flex-wrap: wrap;
 }
 
 .bandSwatch {
@@ -138,13 +243,22 @@
   font-family: var(--font-data);
   font-size: 13px;
   color: var(--muted);
-  width: 64px;
+  width: 56px;
   flex-shrink: 0;
 }
 
 .bandLabel {
   font-size: 14px;
+  width: 150px;
+  flex-shrink: 0;
 }
+
+.bandDescription {
+  font-size: 12.5px;
+  color: var(--muted);
+}
+
+/* ---- data source cards ---- */
 
 .sourcesGrid {
   display: grid;
@@ -161,7 +275,7 @@
 .sourceCard {
   border: 1px solid var(--panel-border);
   border-radius: 8px;
-  padding: 18px;
+  padding: 20px;
 }
 
 .sourceCardWide {
@@ -174,22 +288,112 @@
   }
 }
 
-.sourceName {
-  font-size: 15px;
-  margin-bottom: 6px;
+.sourceHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 4px;
 }
 
-.sourceDesc {
-  font-size: 12.5px;
-  color: var(--muted);
-  line-height: 1.55;
-  margin-bottom: 8px;
+.sourceName {
+  font-family: var(--font-display);
+  font-size: 18px;
 }
 
 .sourceLicense {
   font-family: var(--font-data);
   font-size: 10px;
   color: #5c6478;
+  flex-shrink: 0;
+}
+
+.sourceTag {
+  font-family: var(--font-data);
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 10px;
+}
+
+.sourceDesc {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+
+.sourceEndpoint {
+  font-family: var(--font-data);
+  font-size: 11px;
+  color: #7d879d;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--panel-border);
+  border-radius: 6px;
+  padding: 6px 10px;
+  display: inline-block;
+  margin-bottom: 12px;
+}
+
+.fieldsTable {
+  display: flex;
+  flex-direction: column;
+  border-top: 1px solid var(--panel-border);
+  padding-top: 10px;
+}
+
+.fieldRow {
+  display: flex;
+  gap: 10px;
+  padding: 4px 0;
+  flex-wrap: wrap;
+}
+
+.fieldName {
+  font-family: var(--font-data);
+  font-size: 11.5px;
+  color: var(--foreground);
+  width: 180px;
+  flex-shrink: 0;
+}
+
+.fieldUse {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+/* ---- exact formula (collapsed by default) ---- */
+
+.exactFormula {
+  margin-top: 52px;
+}
+
+.exactFormulaSummary {
+  font-family: var(--font-data);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  cursor: pointer;
+  padding: 4px 0;
+}
+
+.exactFormulaSummary:hover {
+  color: var(--foreground);
+}
+
+.formula {
+  font-family: var(--font-data);
+  font-size: 12.5px;
+  line-height: 1.75;
+  color: var(--muted);
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--panel-border);
+  border-radius: 8px;
+  padding: 22px 24px;
+  overflow-x: auto;
+  white-space: pre;
+  margin-top: 14px;
 }
 
 .footer {
