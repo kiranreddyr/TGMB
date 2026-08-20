@@ -1,4 +1,5 @@
 import type { CityPayload } from "@/lib/payload";
+import CitySearch from "./CitySearch";
 import Legend from "./Legend";
 import Leaderboard from "./Leaderboard";
 import CityAnalysis from "./CityAnalysis";
@@ -8,12 +9,15 @@ interface AnalysisPanelProps {
   cities: CityPayload[];
   selectedCity: CityPayload | null;
   onSelectCity: (city: CityPayload) => void;
+  onSearchSelect: (city: CityPayload) => void;
   onDeselect: () => void;
 }
 
-export default function AnalysisPanel({ cities, selectedCity, onSelectCity, onDeselect }: AnalysisPanelProps) {
+export default function AnalysisPanel({ cities, selectedCity, onSelectCity, onSearchSelect, onDeselect }: AnalysisPanelProps) {
   return (
     <div className={styles.panel}>
+      {cities.length > 0 && <CitySearch cities={cities} onSelect={onSearchSelect} />}
+
       <div className={styles.legendRow}>
         <Legend />
       </div>

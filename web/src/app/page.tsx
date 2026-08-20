@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import MeltGlobe from "@/components/MeltGlobe";
+import MeltGlobe, { type FlyToTarget } from "@/components/MeltGlobe";
 import Header from "@/components/Header";
 import GlobeLegend from "@/components/GlobeLegend";
 import IntroSection from "@/components/IntroSection";
@@ -13,6 +13,12 @@ import styles from "./page.module.css";
 export default function Home() {
   const { payload, error, loading } = useMeltPayload();
   const [selectedCity, setSelectedCity] = useState<CityPayload | null>(null);
+  const [flyToTarget, setFlyToTarget] = useState<FlyToTarget | null>(null);
+
+  const handleSearchSelect = (city: CityPayload) => {
+    setSelectedCity(city);
+    setFlyToTarget({ lat: city.lat, lon: city.lon, nonce: Date.now() });
+  };
 
   const topCity = payload?.cities.length
     ? [...payload.cities].sort((a, b) => b.current.score - a.current.score)[0]
@@ -24,7 +30,7 @@ export default function Home() {
 
       <div className={styles.mainRow}>
         <div className={styles.globeSection}>
-          {payload && <MeltGlobe cities={payload.cities} onSelectCity={setSelectedCity} />}
+          {payload && <MeltGlobe cities={payload.cities} onSelectCity={setSelectedCity} flyToTarget={flyToTarget} />}
 
           {loading && !payload && <div className={styles.statusOverlay}>Loading the melt belt…</div>}
 
@@ -46,6 +52,7 @@ export default function Home() {
             cities={payload?.cities ?? []}
             selectedCity={selectedCity}
             onSelectCity={setSelectedCity}
+            onSearchSelect={handleSearchSelect}
             onDeselect={() => setSelectedCity(null)}
           />
         </div>

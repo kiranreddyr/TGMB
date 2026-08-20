@@ -13,9 +13,17 @@ const DEFAULT_ALTITUDE = 2.2;
 const MIN_ALTITUDE = 0.5;
 const MAX_ALTITUDE = 3.5;
 
+export interface FlyToTarget {
+  lat: number;
+  lon: number;
+  /** Bump on every search selection so re-picking the same city still re-triggers the flight. */
+  nonce: number;
+}
+
 interface MeltGlobeProps {
   cities: CityPayload[];
   onSelectCity: (city: CityPayload) => void;
+  flyToTarget?: FlyToTarget | null;
 }
 
 function useContainerSize() {
@@ -45,9 +53,10 @@ function useContainerSize() {
   return { ref, size };
 }
 
-export default function MeltGlobe({ cities, onSelectCity }: MeltGlobeProps) {
+export default function MeltGlobe({ cities, onSelectCity, flyToTarget }: MeltGlobeProps) {
   const { ref, size } = useContainerSize();
   const globeRef = useRef<GlobeMethods | undefined>(undefined);
+  const [isReady, setIsReady] = useState(false);
 
   const handleGlobeReady = () => {
     const controls = globeRef.current?.controls();
@@ -58,7 +67,19 @@ export default function MeltGlobe({ cities, onSelectCity }: MeltGlobeProps) {
       controls.enableZoom = false;
     }
     globeRef.current?.pointOfView({ altitude: DEFAULT_ALTITUDE }, 0);
+    setIsReady(true);
   };
+
+  // F5: searching a city flies the camera to it, on top of whatever zoom
+  // level is already set — direct globe/leaderboard clicks don't do this,
+  // since the user can already see the point they clicked.
+  useEffect(() => {
+    if (!isReady || !flyToTarget) return;
+    const globe = globeRef.current;
+    if (!globe) return;
+    const altitude = Math.min(globe.pointOfView().altitude, DEFAULT_ALTITUDE);
+    globe.pointOfView({ lat: flyToTarget.lat, lng: flyToTarget.lon, altitude }, 1200);
+  }, [flyToTarget, isReady]);
 
   const zoomBy = (factor: number) => {
     const globe = globeRef.current;
