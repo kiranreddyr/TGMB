@@ -1,0 +1,48 @@
+.legend {
+  position: absolute;
+  /* Cleared above the "scroll for analysis" hint, which sits at bottom:16
+     with its own height — verified with no overlap down to 375px wide. */
+  bottom: 64px;
+  left: 16px;
+  background: var(--panel-bg);
+  border: 1px solid var(--panel-border);
+  border-radius: 12px;
+  padding: 12px 14px;
+  backdrop-filter: blur(10px);
+  max-width: 190px;
+}
+
+.title {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 3px 0;
+}
+
+.swatch {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.label {
+  font-size: 12px;
+  line-height: 1.2;
+}
+
+.range {
+  color: var(--muted);
+  font-size: 10px;
+  margin-left: auto;
+  padding-left: 8px;
+  flex-shrink: 0;
+}

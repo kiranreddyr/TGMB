@@ -3,6 +3,7 @@
 import { useState } from "react";
 import MeltGlobe from "@/components/MeltGlobe";
 import Header from "@/components/Header";
+import GlobeLegend from "@/components/GlobeLegend";
 import AnalysisPanel from "@/components/AnalysisPanel";
 import { useMeltPayload } from "@/lib/useMeltPayload";
 import type { CityPayload } from "@/lib/payload";
@@ -27,6 +28,8 @@ export default function Home() {
         )}
 
         <Header generatedAt={payload?.generatedAt ?? null} cityCount={payload?.cityCount ?? 0} />
+
+        {payload && <GlobeLegend />}
 
         {payload && (
           <div className={styles.scrollHint}>
