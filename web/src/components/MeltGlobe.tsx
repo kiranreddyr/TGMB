@@ -2,8 +2,10 @@
 
 import { useEffect, useRef, useState } from "react";
 import dynamic from "next/dynamic";
+import type { ShaderMaterial } from "three";
 import type { GlobeMethods } from "react-globe.gl";
 import { assetUrl, colorForScore, meltHeatColor, type CityPayload } from "@/lib/payload";
+import { loadDayNightMaterial, sunPositionAt } from "@/lib/dayNightMaterial";
 import ZoomControls from "./ZoomControls";
 
 // react-globe.gl touches `window` at import time, so it can only load client-side.
@@ -20,6 +22,10 @@ const FLIGHT_CRUISE_ALTITUDE = 3.3;
 const FLIGHT_CLIMB_MS = 500;
 const FLIGHT_GLIDE_MS = 900;
 const FLIGHT_DESCEND_MS = 600;
+
+// The terminator moves slowly enough that re-checking every minute is
+// visually indistinguishable from continuous — no need for a render loop.
+const SUN_UPDATE_INTERVAL_MS = 60_000;
 
 export interface FlyToTarget {
   lat: number;
@@ -65,11 +71,32 @@ export default function MeltGlobe({ cities, onSelectCity, flyToTarget }: MeltGlo
   const { ref, size } = useContainerSize();
   const globeRef = useRef<GlobeMethods | undefined>(undefined);
   const [isReady, setIsReady] = useState(false);
+  const [material, setMaterial] = useState<ShaderMaterial | null>(null);
   // The zoom level to return to after a flight (or to zoom relative to via
   // the buttons). Tracked explicitly rather than read live from
   // pointOfView(), which mid-flight would report a value from partway
   // through the climb/glide tween instead of where the camera actually rests.
   const restAltitudeRef = useRef(DEFAULT_ALTITUDE);
+
+  // Day/night terminator: a custom shader material blending a day and a
+  // night texture by real sun position, instead of a single flat texture.
+  useEffect(() => {
+    let cancelled = false;
+    loadDayNightMaterial(assetUrl).then((loaded) => {
+      if (!cancelled) setMaterial(loaded);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!material) return;
+    const tick = () => material.uniforms.sunPosition.value.set(...sunPositionAt(new Date()));
+    tick();
+    const interval = setInterval(tick, SUN_UPDATE_INTERVAL_MS);
+    return () => clearInterval(interval);
+  }, [material]);
 
   const handleGlobeReady = () => {
     const controls = globeRef.current?.controls();
@@ -134,13 +161,14 @@ export default function MeltGlobe({ cities, onSelectCity, flyToTarget }: MeltGlo
       // through to the page's normal scroll instead of zooming the globe.
       onWheelCapture={(e) => e.stopPropagation()}
     >
-      {size.width > 0 && (
+      {size.width > 0 && material && (
         <Globe
           ref={globeRef}
           width={size.width}
           height={size.height}
           backgroundColor="#05070d"
-          globeImageUrl={assetUrl("/textures/earth-dark.jpg")}
+          globeMaterial={material}
+          onZoom={(pov) => material.uniforms.globeRotation.value.set(pov.lng, pov.lat)}
           showAtmosphere
           atmosphereColor="#6fb7ff"
           atmosphereAltitude={0.18}
@@ -171,7 +199,7 @@ export default function MeltGlobe({ cities, onSelectCity, flyToTarget }: MeltGlo
           onPointClick={(d) => onSelectCity(d as CityPayload)}
         />
       )}
-      {size.width > 0 && <ZoomControls onZoomIn={() => zoomBy(0.75)} onZoomOut={() => zoomBy(1.35)} />}
+      {size.width > 0 && material && <ZoomControls onZoomIn={() => zoomBy(0.75)} onZoomOut={() => zoomBy(1.35)} />}
     </div>
   );
 }
