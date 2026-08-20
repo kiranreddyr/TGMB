@@ -31,9 +31,10 @@ export default function Home() {
             </div>
           )}
 
-          <Header generatedAt={payload?.generatedAt ?? null} cityCount={payload?.cityCount ?? 0} />
-
-          {payload && <GlobeLegend />}
+          <div className={styles.topLeftStack}>
+            <Header generatedAt={payload?.generatedAt ?? null} cityCount={payload?.cityCount ?? 0} />
+            {payload && <GlobeLegend />}
+          </div>
         </div>
 
         <div className={styles.analysisSection}>

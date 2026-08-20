@@ -8,9 +8,12 @@
 }
 
 .sectionTitle {
-  font-size: 15px;
-  font-weight: 700;
-  margin-bottom: 4px;
+  font-family: var(--font-data);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  margin-bottom: 6px;
 }
 
 .hint {

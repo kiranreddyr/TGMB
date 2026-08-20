@@ -20,7 +20,10 @@ export default function Header({ generatedAt, cityCount }: HeaderProps) {
 
   return (
     <div className={styles.header}>
-      As of {asOf} your time · {cityCount} cities
+      <span className={styles.dot} aria-hidden />
+      <span>
+        AS OF {asOf.toUpperCase()} YOUR TIME · {cityCount} CITIES
+      </span>
     </div>
   );
 }

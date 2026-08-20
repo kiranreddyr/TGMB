@@ -5,9 +5,10 @@
 }
 
 .columnTitle {
-  font-size: 12px;
+  font-family: var(--font-data);
+  font-size: 10px;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   color: var(--muted);
   margin-bottom: 10px;
 }
@@ -39,8 +40,9 @@
 }
 
 .rank {
+  font-family: var(--font-data);
   color: var(--muted);
-  font-size: 12px;
+  font-size: 11px;
   width: 18px;
   flex-shrink: 0;
 }
@@ -66,7 +68,8 @@
 }
 
 .score {
+  font-family: var(--font-data);
   font-size: 13px;
-  font-weight: 700;
+  font-weight: 600;
   flex-shrink: 0;
 }

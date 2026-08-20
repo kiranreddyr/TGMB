@@ -23,10 +23,9 @@ export default function CityAnalysis({ city, onBack }: CityAnalysisProps) {
 
       <div className={styles.header}>
         <div>
-          <div className={styles.cityName}>
-            {city.name}, {city.country}
-          </div>
-          <div className={styles.meta}>{localTime} local time</div>
+          <div className={styles.cityName}>{city.name}</div>
+          <div className={styles.country}>{city.country}</div>
+          <div className={styles.meta}>{localTime.toUpperCase()} LOCAL TIME</div>
         </div>
         <div className={styles.scoreBlock}>
           <div className={styles.score} style={{ color }}>

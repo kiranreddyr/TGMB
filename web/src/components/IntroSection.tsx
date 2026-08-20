@@ -1,3 +1,4 @@
+import Link from "next/link";
 import styles from "./IntroSection.module.css";
 
 interface IntroSectionProps {
@@ -9,7 +10,11 @@ export default function IntroSection({ cityCount }: IntroSectionProps) {
   return (
     <section className={styles.section}>
       <div className={styles.eyebrow}>An open, live index</div>
-      <h1 className={styles.title}>The Global Melt Belt</h1>
+      <h1 className={styles.title}>
+        The Global
+        <br />
+        Melt Belt
+      </h1>
       <p className={styles.tagline}>Where on Earth it&rsquo;s perfect ice cream weather, right now.</p>
 
       <div className={styles.body}>
@@ -21,8 +26,11 @@ export default function IntroSection({ cityCount }: IntroSectionProps) {
         </p>
         <p>
           The Melt Score isn&rsquo;t just temperature: it&rsquo;s how warm it feels, minus rain and wind, weighted
-          by time of day. The formula is published in full below &mdash; nothing about it is tuned to flatter any
-          one place. If a city scores low, that&rsquo;s the point.
+          by time of day. The formula is published in full on the{" "}
+          <Link href="/methodology" className={styles.inlineLink}>
+            methodology page
+          </Link>{" "}
+          &mdash; nothing about it is tuned to flatter any one place. If a city scores low, that&rsquo;s the point.
         </p>
       </div>
 

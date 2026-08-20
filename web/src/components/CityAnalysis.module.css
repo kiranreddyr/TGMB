@@ -2,9 +2,11 @@
   background: none;
   border: none;
   color: var(--muted);
-  font-size: 12px;
+  font-family: var(--font-data);
+  font-size: 11px;
+  letter-spacing: 0.04em;
   cursor: pointer;
-  padding: 0 0 14px;
+  padding: 0 0 18px;
   font: inherit;
 }
 
@@ -22,28 +24,41 @@
 }
 
 .cityName {
-  font-size: 22px;
-  font-weight: 700;
+  font-family: var(--font-display);
+  font-size: 30px;
+  line-height: 1.1;
 }
 
-.meta {
+.country {
   color: var(--muted);
   font-size: 13px;
   margin-top: 2px;
 }
 
+.meta {
+  color: var(--muted);
+  font-family: var(--font-data);
+  font-size: 11px;
+  margin-top: 6px;
+}
+
 .scoreBlock {
   text-align: right;
+  flex-shrink: 0;
 }
 
 .score {
+  font-family: var(--font-data);
   font-size: 44px;
-  font-weight: 700;
+  font-weight: 600;
   line-height: 1;
 }
 
 .band {
-  font-size: 13px;
+  font-family: var(--font-data);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
   font-weight: 600;
   margin-top: 4px;
 }
@@ -64,24 +79,25 @@
 
 .statLabel {
   color: var(--muted);
-  font-size: 11px;
+  font-family: var(--font-data);
+  font-size: 9px;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.1em;
+  margin-bottom: 4px;
 }
 
 .statValue {
-  font-size: 17px;
-  font-weight: 600;
-  margin-top: 2px;
+  font-family: var(--font-data);
+  font-size: 16px;
+  font-weight: 500;
 }
 
 .reason {
-  font-size: 14px;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 17px;
   color: var(--foreground);
-  background: rgba(255, 255, 255, 0.04);
-  border-left: 3px solid var(--accent);
-  padding: 10px 14px;
-  border-radius: 6px;
+  line-height: 1.5;
   margin-bottom: 18px;
 }
 
@@ -97,9 +113,10 @@
 
 .sparklineLabel {
   color: var(--muted);
-  font-size: 11px;
+  font-family: var(--font-data);
+  font-size: 10px;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
+  letter-spacing: 0.1em;
   margin-bottom: 8px;
 }
 
@@ -112,7 +129,8 @@
   display: flex;
   justify-content: space-between;
   color: var(--muted);
-  font-size: 11px;
+  font-family: var(--font-data);
+  font-size: 10px;
   max-width: 520px;
   margin-top: 4px;
 }

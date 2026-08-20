@@ -1,21 +1,19 @@
 .legend {
-  position: absolute;
-  bottom: 16px;
-  left: 16px;
-  background: var(--panel-bg);
+  background: rgba(5, 7, 13, 0.72);
   border: 1px solid var(--panel-border);
-  border-radius: 12px;
-  padding: 12px 14px;
-  backdrop-filter: blur(10px);
-  max-width: 190px;
+  border-radius: 10px;
+  padding: 14px 16px;
+  backdrop-filter: blur(8px);
+  min-width: 190px;
 }
 
 .title {
+  font-family: var(--font-data);
   font-size: 10px;
   text-transform: uppercase;
-  letter-spacing: 0.07em;
+  letter-spacing: 0.14em;
   color: var(--muted);
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 
 .item {
@@ -38,6 +36,7 @@
 }
 
 .range {
+  font-family: var(--font-data);
   color: var(--muted);
   font-size: 10px;
   margin-left: auto;

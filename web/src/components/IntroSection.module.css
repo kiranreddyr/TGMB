@@ -1,79 +1,88 @@
 .section {
-  min-height: 82vh;
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 60px 24px;
-  text-align: center;
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 96px 32px 56px;
+  text-align: left;
 }
 
 .eyebrow {
+  font-family: var(--font-data);
   color: var(--accent);
-  font-size: 12px;
-  font-weight: 700;
+  font-size: 11px;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  letter-spacing: 0.14em;
   margin-bottom: 18px;
 }
 
 .title {
-  font-size: clamp(32px, 6vw, 56px);
-  font-weight: 700;
-  letter-spacing: -0.02em;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: clamp(44px, 7vw, 78px);
+  line-height: 1.02;
+  letter-spacing: -0.01em;
   max-width: 900px;
 }
 
 .tagline {
+  font-family: var(--font-display);
+  font-style: italic;
   color: var(--muted);
-  font-size: clamp(15px, 2vw, 19px);
-  margin-top: 16px;
-  max-width: 620px;
+  font-size: clamp(17px, 2.2vw, 22px);
+  margin-top: 20px;
+  max-width: 560px;
+  line-height: 1.4;
 }
 
 .body {
   margin-top: 28px;
-  max-width: 640px;
-  font-size: 15px;
+  max-width: 620px;
+  font-size: 16px;
   line-height: 1.65;
-  color: var(--foreground);
+  color: var(--muted);
 }
 
 .body p + p {
   margin-top: 14px;
 }
 
+.inlineLink {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 .factRow {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  gap: 12px;
-  margin-top: 34px;
+  gap: 10px;
+  margin-top: 36px;
 }
 
 .fact {
-  background: rgba(255, 255, 255, 0.04);
+  font-family: var(--font-data);
+  background: rgba(255, 255, 255, 0.03);
   border: 1px solid var(--panel-border);
-  border-radius: 999px;
-  padding: 8px 16px;
-  font-size: 13px;
+  border-radius: 6px;
+  padding: 9px 14px;
+  font-size: 12px;
   color: var(--muted);
 }
 
 .fact strong {
-  color: var(--foreground);
+  color: var(--accent);
   font-weight: 600;
 }
 
 .scrollCue {
   margin-top: 48px;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   color: var(--muted);
-  font-size: 12px;
+  font-family: var(--font-data);
+  font-size: 11px;
+  letter-spacing: 0.04em;
   animation: bob 2s ease-in-out infinite;
 }
 
