@@ -14,9 +14,13 @@ export default function Home() {
   const { payload, error, loading } = useMeltPayload();
   const [selectedCity, setSelectedCity] = useState<CityPayload | null>(null);
 
+  const topCity = payload?.cities.length
+    ? [...payload.cities].sort((a, b) => b.current.score - a.current.score)[0]
+    : null;
+
   return (
     <main className={styles.container}>
-      <IntroSection cityCount={payload?.cityCount ?? 0} />
+      <IntroSection cityCount={payload?.cityCount ?? 0} topCity={topCity ?? null} />
 
       <div className={styles.mainRow}>
         <div className={styles.globeSection}>
