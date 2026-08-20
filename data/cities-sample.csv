@@ -1,0 +1,11 @@
+name,country,lat,lon,timezone
+Reykjavik,Iceland,64.1466,-21.9426,Atlantic/Reykjavik
+Oslo,Norway,59.9139,10.7522,Europe/Oslo
+London,United Kingdom,51.5074,-0.1278,Europe/London
+New York,United States,40.7128,-74.0060,America/New_York
+Dubai,United Arab Emirates,25.2048,55.2708,Asia/Dubai
+Singapore,Singapore,1.3521,103.8198,Asia/Singapore
+Nairobi,Kenya,-1.2921,36.8219,Africa/Nairobi
+Sao Paulo,Brazil,-23.5505,-46.6333,America/Sao_Paulo
+Sydney,Australia,-33.8688,151.2093,Australia/Sydney
+Ushuaia,Argentina,-54.8019,-68.3030,America/Argentina/Ushuaia
