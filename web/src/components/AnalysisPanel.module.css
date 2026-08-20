@@ -1,0 +1,42 @@
+.panel {
+  background: var(--panel-bg);
+  border-top: 1px solid var(--panel-border);
+  padding: 18px 20px 24px;
+  overflow-y: auto;
+  height: 100%;
+}
+
+.legendRow {
+  margin-bottom: 18px;
+}
+
+.sectionTitle {
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.hint {
+  color: var(--muted);
+  font-size: 12px;
+  margin-bottom: 16px;
+}
+
+.footer {
+  margin-top: 24px;
+  padding-top: 14px;
+  border-top: 1px solid var(--panel-border);
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.footer a {
+  text-decoration: underline;
+}
+
+.emptyState {
+  color: var(--muted);
+  font-size: 13px;
+  padding: 24px 0;
+  text-align: center;
+}

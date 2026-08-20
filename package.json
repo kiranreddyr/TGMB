@@ -5,9 +5,11 @@
   "type": "module",
   "description": "A live globe showing where on Earth it is perfect ice cream weather right now.",
   "scripts": {
+    "dev": "npm --prefix web run dev",
     "phase0": "tsx src/phase0.ts",
     "build:cities": "tsx scripts/build-city-list.ts",
     "hourly-job": "tsx src/hourlyJob.ts",
+    "sync-web-data": "node -e \"require('fs').copyFileSync('data/output/melt-payload.json','web/public/data/melt-payload.json')\"",
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {

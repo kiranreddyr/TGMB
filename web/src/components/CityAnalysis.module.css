@@ -1,0 +1,124 @@
+.backButton {
+  background: none;
+  border: none;
+  color: var(--muted);
+  font-size: 12px;
+  cursor: pointer;
+  padding: 0 0 14px;
+  font: inherit;
+}
+
+.backButton:hover {
+  color: var(--foreground);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.cityName {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.meta {
+  color: var(--muted);
+  font-size: 13px;
+  margin-top: 2px;
+}
+
+.scoreBlock {
+  text-align: right;
+}
+
+.score {
+  font-size: 44px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.band {
+  font-size: 13px;
+  font-weight: 600;
+  margin-top: 4px;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+@media (max-width: 640px) {
+  .statsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.stat {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--panel-border);
+  border-radius: 10px;
+  padding: 10px 12px;
+}
+
+.statLabel {
+  color: var(--muted);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.statValue {
+  font-size: 17px;
+  font-weight: 600;
+  margin-top: 2px;
+}
+
+.reason {
+  font-size: 14px;
+  color: var(--foreground);
+  background: rgba(255, 255, 255, 0.04);
+  border-left: 3px solid var(--accent);
+  padding: 10px 14px;
+  border-radius: 6px;
+  margin-bottom: 18px;
+}
+
+.staleNote {
+  color: #e0a94a;
+  font-size: 12px;
+  margin-bottom: 12px;
+}
+
+.sparklineSection {
+  margin-top: 4px;
+}
+
+.sparklineLabel {
+  color: var(--muted);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 8px;
+}
+
+.sparklineWrap {
+  width: 100%;
+  max-width: 520px;
+}
+
+.sparklineAxis {
+  display: flex;
+  justify-content: space-between;
+  color: var(--muted);
+  font-size: 11px;
+  max-width: 520px;
+  margin-top: 4px;
+}

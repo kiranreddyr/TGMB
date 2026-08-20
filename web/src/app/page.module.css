@@ -1,0 +1,39 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+}
+
+.globeSection {
+  position: relative;
+  flex: 1 1 56%;
+  min-height: 280px;
+}
+
+.analysisSection {
+  flex: 1 1 44%;
+  min-height: 220px;
+  overflow: hidden;
+}
+
+@media (min-width: 900px) {
+  .globeSection {
+    flex-basis: 62%;
+  }
+  .analysisSection {
+    flex-basis: 38%;
+  }
+}
+
+.statusOverlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  font-size: 14px;
+  padding: 24px;
+  text-align: center;
+}
