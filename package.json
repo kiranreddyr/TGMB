@@ -9,7 +9,7 @@
     "phase0": "tsx src/phase0.ts",
     "build:cities": "tsx scripts/build-city-list.ts",
     "hourly-job": "tsx src/hourlyJob.ts",
-    "sync-web-data": "node -e \"require('fs').copyFileSync('data/output/melt-payload.json','web/public/data/melt-payload.json')\"",
+    "sync-web-data": "node -e \"require('fs').mkdirSync('web/public/data',{recursive:true});require('fs').copyFileSync('data/output/melt-payload.json','web/public/data/melt-payload.json')\"",
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
