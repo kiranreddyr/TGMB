@@ -1,9 +1,9 @@
 .panel {
   background: var(--panel-bg);
   border-top: 1px solid var(--panel-border);
-  padding: 18px 20px 24px;
-  overflow-y: auto;
-  height: 100%;
+  padding: 24px 20px 40px;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 .legendRow {

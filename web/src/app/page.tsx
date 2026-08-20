@@ -27,6 +27,13 @@ export default function Home() {
         )}
 
         <Header generatedAt={payload?.generatedAt ?? null} cityCount={payload?.cityCount ?? 0} />
+
+        {payload && (
+          <div className={styles.scrollHint}>
+            <span>Scroll for analysis</span>
+            <span>↓</span>
+          </div>
+        )}
       </div>
 
       <div className={styles.analysisSection}>

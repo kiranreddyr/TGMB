@@ -47,8 +47,7 @@ export default function MeltGlobe({ cities, onSelectCity }: MeltGlobeProps) {
   const handleGlobeReady = () => {
     const controls = globeRef.current?.controls();
     if (controls) {
-      controls.autoRotate = true;
-      controls.autoRotateSpeed = 0.35;
+      controls.autoRotate = false;
       controls.enableZoom = true;
     }
     globeRef.current?.pointOfView({ altitude: 2.2 }, 0);
