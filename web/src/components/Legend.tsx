@@ -6,12 +6,17 @@ export default function Legend() {
   return (
     <div className={styles.legend}>
       {SCORE_BANDS.map((b) => (
-        <div className={styles.item} key={b.band} title={b.description}>
+        <div className={styles.item} key={b.band}>
           <span className={styles.swatch} style={{ background: b.color }} />
-          <span className={styles.label}>{b.band}</span>
-          <span className={styles.range}>
-            {b.min}–{b.max}
-          </span>
+          <div className={styles.text}>
+            <div className={styles.labelRow}>
+              <span className={styles.label}>{b.band}</span>
+              <span className={styles.range}>
+                {b.min}–{b.max}
+              </span>
+            </div>
+            <div className={styles.description}>{b.description}</div>
+          </div>
         </div>
       ))}
     </div>
