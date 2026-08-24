@@ -72,6 +72,7 @@ export default function MeltGlobe({ cities, onSelectCity, flyToTarget }: MeltGlo
   const globeRef = useRef<GlobeMethods | undefined>(undefined);
   const [isReady, setIsReady] = useState(false);
   const [material, setMaterial] = useState<ShaderMaterial | null>(null);
+  const [countries, setCountries] = useState<object[]>([]);
   // The zoom level to return to after a flight (or to zoom relative to via
   // the buttons). Tracked explicitly rather than read live from
   // pointOfView(), which mid-flight would report a value from partway
@@ -97,6 +98,23 @@ export default function MeltGlobe({ cities, onSelectCity, flyToTarget }: MeltGlo
     const interval = setInterval(tick, SUN_UPDATE_INTERVAL_MS);
     return () => clearInterval(interval);
   }, [material]);
+
+  // Country borders — the satellite texture alone has no political lines
+  // (same as real satellite imagery), so there's no way to visually confirm
+  // which side of a border a city dot sits on without this. Natural Earth
+  // 1:110m boundaries, exactly the source the PRD already names for map
+  // geometry, bundled with three-globe's own examples.
+  useEffect(() => {
+    let cancelled = false;
+    fetch(assetUrl("/geo/countries.geojson"))
+      .then((res) => res.json())
+      .then((data: { features: object[] }) => {
+        if (!cancelled) setCountries(data.features);
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   const handleGlobeReady = () => {
     const controls = globeRef.current?.controls();
@@ -173,6 +191,15 @@ export default function MeltGlobe({ cities, onSelectCity, flyToTarget }: MeltGlo
           atmosphereColor="#6fb7ff"
           atmosphereAltitude={0.18}
           onGlobeReady={handleGlobeReady}
+          // Faint country borders so it's possible to actually verify which
+          // country a city dot sits in — transparent fill, thin stroke only,
+          // hugging the surface well below the points/heatmap layers.
+          polygonsData={countries}
+          polygonCapColor={() => "rgba(0,0,0,0)"}
+          polygonSideColor={() => "rgba(0,0,0,0)"}
+          polygonStrokeColor={() => "rgba(255,255,255,0.45)"}
+          polygonAltitude={0.001}
+          polygonsTransitionDuration={0}
           // The "belt": a smooth heat-map interpolation across every city's
           // score, read as a soft glowing band rather than discrete blocks.
           heatmapsData={[cities]}
