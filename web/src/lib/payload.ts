@@ -17,6 +17,9 @@ export interface CityPayload {
     apparentTemperature: number;
     reason: string;
     stale: boolean;
+    /** true/false when this country's public holidays are covered by the API, null when unknown — never guessed. */
+    isPublicHoliday: boolean | null;
+    holidayName: string | null;
   };
   /** Basic hourly forecast for the next hours, starting at `current.time`. */
   forward: Array<{

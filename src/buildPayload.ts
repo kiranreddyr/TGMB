@@ -1,6 +1,7 @@
 import type { CityWeather } from "./openMeteoClient.js";
 import { computeMeltScore, explainScore, MELT_SCORE_FORMULA_VERSION } from "./scoreEngine.js";
 import { describeWeatherCode } from "./weatherCode.js";
+import { holidayOn, type HolidaysByCountry } from "./holidaysClient.js";
 
 export interface CityPayload {
   id: string;
@@ -17,6 +18,9 @@ export interface CityPayload {
     apparentTemperature: number;
     reason: string;
     stale: boolean;
+    /** true/false when this country's public holidays are covered by the API, null when unknown — never guessed. */
+    isPublicHoliday: boolean | null;
+    holidayName: string | null;
   };
   /** Basic hourly forecast for the next hours, starting at `current.time`. */
   forward: Array<{
@@ -51,9 +55,12 @@ export function slugify(name: string, country: string): string {
     .replace(/^-+|-+$/g, "");
 }
 
-export function buildPayload(weather: CityWeather[]): MeltPayload {
+export function buildPayload(weather: CityWeather[], holidays: HolidaysByCountry = new Map()): MeltPayload {
   const cities: CityPayload[] = weather.map(({ city, current, forward, daily, stale }) => {
     const result = computeMeltScore(current.inputs);
+    const countryHolidays = holidays.get(city.countryCode) ?? null;
+    const todayLocalDate = current.time.split("T")[0] ?? "";
+    const matchedHoliday = countryHolidays ? holidayOn(countryHolidays, todayLocalDate) : null;
     return {
       id: slugify(city.name, city.country),
       name: city.name,
@@ -69,6 +76,8 @@ export function buildPayload(weather: CityWeather[]): MeltPayload {
         apparentTemperature: Math.round(current.inputs.apparentTemperature * 10) / 10,
         reason: explainScore(current.inputs, result),
         stale,
+        isPublicHoliday: countryHolidays === null ? null : !!matchedHoliday,
+        holidayName: matchedHoliday?.name ?? null,
       },
       forward: forward.map((point) => ({
         time: point.time,

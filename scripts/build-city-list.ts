@@ -173,10 +173,10 @@ async function main() {
     }))
     .sort((a, b) => b.city.lat - a.city.lat);
 
-  const header = "name,country,lat,lon,timezone,population,selection_reason";
+  const header = "name,country,country_code,lat,lon,timezone,population,selection_reason";
   const lines = rows.map(
     ({ city, country, reason }) =>
-      `${csvSafe(city.name)},${csvSafe(country)},${city.lat},${city.lon},${city.timezone},${city.population},${reason}`,
+      `${csvSafe(city.name)},${csvSafe(country)},${city.countryCode},${city.lat},${city.lon},${city.timezone},${city.population},${reason}`,
   );
 
   await writeFile(OUT_CSV, [header, ...lines].join("\n") + "\n", "utf-8");

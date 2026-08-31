@@ -1,214 +1,214 @@
-name,country,lat,lon,timezone,population,selection_reason
-Longyearbyen,Svalbard and Jan Mayen,78.22334,15.64689,Arctic/Longyearbyen,2368,latitude-coverage
-Helsinki,Finland,60.16952,24.93545,Europe/Helsinki,658864,capital
-Saint Petersburg,Russia,59.93863,30.31413,Europe/Moscow,5351935,mega-city
-Oslo,Norway,59.91273,10.74609,Europe/Oslo,1082575,capital
-Stockholm,Sweden,59.32938,18.06871,Europe/Stockholm,1515017,capital
-Moscow,Russia,55.75204,37.61781,Europe/Moscow,10381222,mega-city
-Copenhagen,Denmark,55.67594,12.56553,Europe/Copenhagen,1153615,capital
-Minsk,Belarus,53.90019,27.56653,Europe/Minsk,1742124,capital
-Berlin,Germany,52.52437,13.41053,Europe/Berlin,3426354,mega-city
-Amsterdam,The Netherlands,52.37403,4.88969,Europe/Amsterdam,741636,capital
-Warsaw,Poland,52.22977,21.01178,Europe/Warsaw,1702139,capital
-London,United Kingdom,51.50853,-0.12574,Europe/London,8961989,mega-city
-Astana,Kazakhstan,51.1801,71.44598,Asia/Almaty,1544142,capital
-Brussels,Belgium,50.85045,4.34878,Europe/Brussels,1019022,capital
-Kyiv,Ukraine,50.45466,30.5238,Europe/Kyiv,2952301,capital
-Prague,Czechia,50.08804,14.42076,Europe/Prague,1165581,capital
-Paris,France,48.85341,2.3488,Europe/Paris,2138551,capital
-Vienna,Austria,48.20849,16.37208,Europe/Vienna,1691468,capital
-Bratislava,Slovakia,48.14816,17.10674,Europe/Bratislava,423737,capital
-Budapest,Hungary,47.49835,19.04045,Europe/Budapest,1741041,capital
-Bern,Switzerland,46.94809,7.44744,Europe/Zurich,121631,capital
-Harbin,China,45.75,126.65,Asia/Shanghai,5242897,mega-city
-Ottawa,Canada,45.41117,-75.69812,America/Toronto,1017449,capital
-Belgrade,Serbia,44.80401,20.46513,Europe/Belgrade,1273651,capital
-Bucharest,Romania,44.43225,26.10626,Europe/Bucharest,1877155,capital
-Changchun,China,43.88,125.32278,Asia/Shanghai,4714996,mega-city
-Ürümqi,China,43.80096,87.60046,Asia/Urumqi,3029372,mega-city
-Bishkek,Kyrgyzstan,42.87,74.59,Asia/Bishkek,900000,capital
-Sofia,Bulgaria,42.69751,23.32415,Europe/Sofia,1152556,capital
-Rome,Italy,41.89193,12.51133,Europe/Rome,2318895,capital
-Shenyang,China,41.79222,123.43278,Asia/Shanghai,7050000,mega-city
-Tashkent,Uzbekistan,41.26465,69.21627,Asia/Tashkent,1978028,capital
-Istanbul,Turkey,41.01384,28.94966,Europe/Istanbul,15701602,mega-city
-New York City,United States,40.71427,-74.00597,America/New_York,8804190,mega-city
-Madrid,Spain,40.4165,-3.70256,Europe/Madrid,3255944,mega-city
-Baku,Azerbaijan,40.37767,49.89201,Asia/Baku,2351300,capital
-Bursa,Turkey,40.19559,29.06013,Europe/Istanbul,3101833,mega-city
-Ankara,Turkey,39.91987,32.85427,Europe/Istanbul,3517182,mega-city
-Beijing,China,39.9075,116.39723,Asia/Shanghai,18960744,mega-city
-Tangshan,China,39.64381,118.18319,Asia/Shanghai,3372102,mega-city
-Tianjin,China,39.14222,117.17667,Asia/Shanghai,11090314,mega-city
-Pyongyang,North Korea,39.03385,125.75432,Asia/Pyongyang,3222000,mega-city
-Dalian,China,38.91222,121.60222,Asia/Shanghai,4913879,mega-city
-Washington,United States,38.89511,-77.03637,America/New_York,689545,capital
-Lisbon,Portugal,38.72509,-9.1498,Europe/Lisbon,517802,capital
-Dushanbe,Tajikistan,38.53575,68.77905,Asia/Dushanbe,679400,capital
-Shijiazhuang,China,38.04139,114.47861,Asia/Shanghai,3938513,mega-city
-Wuzhong,China,37.9867,106.201,Asia/Shanghai,7202654,mega-city
-Athens,Greece,37.98376,23.72784,Europe/Athens,664046,capital
-Ashgabat,Turkmenistan,37.95,58.38333,Asia/Ashgabat,1030063,capital
-Taiyuan,China,37.86944,112.56028,Asia/Shanghai,4303673,mega-city
-Seoul,South Korea,37.566,126.9784,Asia/Seoul,10349312,mega-city
-Lüliang,China,37.5192,111.14436,Asia/Shanghai,3346500,mega-city
-Incheon,South Korea,37.45646,126.70515,Asia/Seoul,3015482,mega-city
-Tunis,Tunisia,36.81897,10.16579,Africa/Tunis,693210,capital
-Zibo,China,36.79056,118.06333,Asia/Shanghai,3129228,mega-city
-Algiers,Algeria,36.73225,3.08746,Africa/Algiers,2364230,capital
-Jinan,China,36.66833,116.99722,Asia/Shanghai,4335989,mega-city
-Qingdao,China,36.06488,120.38042,Asia/Shanghai,7172451,mega-city
-Tehran,Iran,35.69439,51.42151,Asia/Tehran,7153309,mega-city
-Tokyo,Japan,35.6895,139.69171,Asia/Tokyo,9733276,mega-city
-Yokohama,Japan,35.43333,139.65,Asia/Tokyo,3777491,mega-city
-Busan,South Korea,35.10168,129.03004,Asia/Seoul,3285147,mega-city
-Zhengzhou,China,34.75778,113.64861,Asia/Shanghai,4253913,mega-city
-Kabul,Afghanistan,34.52813,69.17233,Asia/Kabul,4434550,mega-city
-Xi’an,China,34.25833,108.92861,Asia/Shanghai,9600000,mega-city
-Los Angeles,United States,34.05223,-118.24368,America/Los_Angeles,3820914,mega-city
-Rabat,Morocco,34.01325,-6.83255,Africa/Casablanca,1655753,capital
-Peshawar,Pakistan,34.008,71.57849,Asia/Karachi,4758762,mega-city
-Beirut,Lebanon,33.89332,35.50157,Asia/Beirut,1916100,capital
-Islamabad,Pakistan,33.72148,73.04329,Asia/Karachi,601600,capital
-Rawalpindi,Pakistan,33.59733,73.0479,Asia/Karachi,3357612,mega-city
-Casablanca,Morocco,33.58831,-7.61138,Africa/Casablanca,3665954,mega-city
-Damascus,Syria,33.5102,36.29128,Asia/Damascus,1569394,capital
-Baghdad,Iraq,33.34058,44.40088,Asia/Baghdad,7216000,mega-city
-Tripoli,Libya,32.88743,13.18733,Africa/Tripoli,1302947,capital
-Shiyan,China,32.6475,110.77806,Asia/Shanghai,3460000,mega-city
-Nanjing,China,32.06167,118.77778,Asia/Shanghai,9314685,mega-city
-Amman,Jordan,31.95522,35.94503,Asia/Amman,1275857,capital
-Hefei,China,31.86389,117.28083,Asia/Shanghai,5050000,mega-city
-Changzhou,China,31.77359,119.95401,Asia/Shanghai,3290918,mega-city
-Wuxi,China,31.56887,120.28857,Asia/Shanghai,4396835,mega-city
-Lahore,Pakistan,31.558,74.35071,Asia/Karachi,13004135,mega-city
-Faisalabad,Pakistan,31.41554,73.08969,Asia/Karachi,3800193,mega-city
-Suzhou,China,31.30408,120.59538,Asia/Shanghai,6715559,mega-city
-Puxi,China,31.24414,121.46592,Asia/Shanghai,6683712,mega-city
-Pudong,China,31.23995,121.50094,Asia/Shanghai,5681512,mega-city
-Shanghai,China,31.22222,121.45806,Asia/Shanghai,24874500,mega-city
-Alexandria,Egypt,31.20176,29.91582,Africa/Cairo,5263542,mega-city
-Chengdu,China,30.66667,104.06667,Asia/Shanghai,13568357,mega-city
-Wuhan,China,30.58333,114.26667,Asia/Shanghai,10392693,mega-city
-Hangzhou,China,30.29365,120.16142,Asia/Shanghai,9236032,mega-city
-Cairo,Egypt,30.06263,31.24967,Africa/Cairo,9606916,mega-city
-Giza,Egypt,30.00944,31.20861,Africa/Cairo,4367343,mega-city
-Ningbo,China,29.87819,121.54945,Asia/Shanghai,3731203,mega-city
-Chongqing,China,29.56026,106.55771,Asia/Shanghai,7457599,mega-city
-Puyang,China,29.45679,119.88872,Asia/Shanghai,3590000,mega-city
-Delhi,India,28.65195,77.23149,Asia/Kolkata,11034555,mega-city
-New Delhi,India,28.62137,77.2148,Asia/Kolkata,317797,capital
-Changsha,China,28.19874,112.97087,Asia/Shanghai,3093980,mega-city
-Kathmandu,Nepal,27.70169,85.3206,Asia/Kathmandu,1442271,capital
-Jaipur,India,26.91962,75.78781,Asia/Kolkata,3046163,mega-city
-Guiyang,China,26.58333,106.71667,Asia/Shanghai,3037159,mega-city
-Fuzhou,China,26.06139,119.30611,Asia/Shanghai,3740000,mega-city
-Dubai,United Arab Emirates,25.07725,55.30927,Asia/Dubai,3790000,mega-city
-New Taipei City,Taiwan,25.06199,121.45703,Asia/Taipei,4004367,mega-city
-Taipei,Taiwan,25.05306,121.52639,Asia/Taipei,7871900,mega-city
-Kunming,China,25.03889,102.71833,Asia/Shanghai,3855346,mega-city
-Karachi,Pakistan,24.8608,67.0104,Asia/Karachi,11624219,mega-city
-Riyadh,Saudi Arabia,24.68773,46.72185,Asia/Riyadh,4205961,mega-city
-Xiamen,China,24.47979,118.08187,Asia/Shanghai,4617251,mega-city
-Abu Dhabi,United Arab Emirates,24.45118,54.39696,Asia/Dubai,1807000,capital
-Dhaka,Bangladesh,23.7104,90.40744,Asia/Dhaka,10356500,mega-city
-Shantou,China,23.35489,116.67876,Asia/Shanghai,3838900,mega-city
-Havana,Cuba,23.13302,-82.38304,America/Havana,2163824,capital
-Guangzhou,China,23.11667,113.25,Asia/Shanghai,16096724,mega-city
-Foshan,China,23.02677,113.13148,Asia/Shanghai,9042509,mega-city
-Ahmedabad,India,23.02579,72.58727,Asia/Kolkata,6357693,mega-city
-Dongguan,China,23.01797,113.74866,Asia/Shanghai,9644871,mega-city
-Nanning,China,22.81667,108.31667,Asia/Shanghai,3839800,mega-city
-Kolkata,India,22.56263,88.36304,Asia/Kolkata,4631392,mega-city
-Bao'an,China,22.55213,113.88288,Asia/Shanghai,4476554,mega-city
-Shenzhen,China,22.54554,114.0683,Asia/Shanghai,17494398,mega-city
-Zhongshan,China,22.52306,113.37912,Asia/Shanghai,3841873,mega-city
-New Territories,Hong Kong,22.42441,114.11095,Asia/Hong_Kong,3984077,mega-city
-Chattogram,Bangladesh,22.3384,91.83168,Asia/Dhaka,3920222,mega-city
-Hong Kong,Hong Kong,22.27832,114.17469,Asia/Hong_Kong,7396076,mega-city
-Jeddah,Saudi Arabia,21.49012,39.18624,Asia/Riyadh,4697000,mega-city
-Surat,India,21.19594,72.83023,Asia/Kolkata,4591246,mega-city
-Hanoi,Vietnam,21.0245,105.84117,Asia/Bangkok,8053663,mega-city
-Nay Pyi Taw,Myanmar,19.745,96.12972,Asia/Yangon,925000,capital
-Mexico City,Mexico,19.42847,-99.12766,America/Mexico_City,12294193,mega-city
-Mumbai,India,19.07283,72.88261,Asia/Kolkata,12691836,mega-city
-Port-au-Prince,Haiti,18.54349,-72.33881,America/Port-au-Prince,1234742,capital
-Pune,India,18.51957,73.85535,Asia/Kolkata,3124458,mega-city
-Santo Domingo,Dominican Republic,18.47186,-69.89232,America/Santo_Domingo,2201941,capital
-Vientiane,Laos,17.96667,102.6,Asia/Vientiane,840940,capital
-Hyderabad,India,17.38405,78.45636,Asia/Kolkata,6993262,mega-city
-Yangon,Myanmar,16.80528,96.15611,Asia/Yangon,4477638,mega-city
-Khartoum,Sudan,15.55177,32.53241,Africa/Khartoum,1974647,capital
-Sanaa,Yemen,15.35452,44.20646,Asia/Aden,1937451,capital
-Asmara,Eritrea,15.33805,38.93184,Africa/Asmara,563930,capital
-Dakar,Senegal,14.6937,-17.44406,Africa/Dakar,2646503,capital
-Quezon City,Philippines,14.6488,121.0509,Asia/Manila,3084270,mega-city
-Guatemala City,Guatemala,14.64072,-90.51327,America/Guatemala,994938,capital
-Manila,Philippines,14.6042,120.9822,Asia/Manila,1600000,capital
-Tegucigalpa,Honduras,14.0818,-87.20681,America/Tegucigalpa,850848,capital
-Bangkok,Thailand,13.75398,100.50144,Asia/Bangkok,5104476,mega-city
-San Salvador,El Salvador,13.68935,-89.18718,America/El_Salvador,525990,capital
-Niamey,Niger,13.51366,2.1098,Africa/Niamey,1323691,capital
-Chennai,India,13.08784,80.27847,Asia/Kolkata,4681087,mega-city
-Bengaluru,India,12.97194,77.59369,Asia/Kolkata,8495492,mega-city
-Bamako,Mali,12.60915,-7.97522,Africa/Bamako,4227569,mega-city
-Ouagadougou,Burkina Faso,12.36566,-1.53388,Africa/Ouagadougou,2415266,capital
-Managua,Nicaragua,12.13282,-86.2504,America/Managua,973087,capital
-N'Djamena,Chad,12.10672,15.0444,Africa/Ndjamena,1359526,capital
-Kano,Nigeria,12.00012,8.51672,Africa/Lagos,4910000,mega-city
-Phnom Penh,Cambodia,11.56245,104.91601,Asia/Phnom_Penh,1573544,capital
-Ho Chi Minh City,Vietnam,10.82302,106.62965,Asia/Ho_Chi_Minh,14002598,mega-city
-Caracas,Venezuela,10.48801,-66.87919,America/Caracas,3000000,capital
-Conakry,Guinea,9.53795,-13.67729,Africa/Conakry,1928389,capital
-Abuja,Nigeria,9.05785,7.49508,Africa/Lagos,2690000,capital
-Addis Ababa,Ethiopia,9.02497,38.74689,Africa/Addis_Ababa,3860000,mega-city
-Freetown,Sierra Leone,8.48714,-13.2356,Africa/Freetown,802639,capital
-Ibadan,Nigeria,7.37756,3.90591,Africa/Lagos,3649000,mega-city
-Colombo,Sri Lanka,6.93548,79.84868,Asia/Colombo,648034,capital
-Yamoussoukro,Ivory Coast,6.82055,-5.27674,Africa/Abidjan,275686,capital
-Porto-Novo,Benin,6.49646,2.60359,Africa/Porto-Novo,264320,capital
-Lagos,Nigeria,6.45407,3.39467,Africa/Lagos,15388000,mega-city
-Lomé,Togo,6.12874,1.22154,Africa/Lome,2188376,capital
-Accra,Ghana,5.55602,-0.1969,Africa/Accra,1963264,capital
-Abidjan,Ivory Coast,5.35444,-4.00167,Africa/Abidjan,6321017,mega-city
-Juba,South Sudan,4.85165,31.58247,Africa/Juba,450000,capital
-Bogotá,Colombia,4.60971,-74.08175,America/Bogota,7674366,mega-city
-Yaoundé,Cameroon,3.86667,11.51667,Africa/Douala,1299369,capital
-Kuala Lumpur,Malaysia,3.1412,101.68653,Asia/Kuala_Lumpur,1453975,capital
-Mogadishu,Somalia,2.03711,45.34375,Africa/Mogadishu,2587183,capital
-Singapore,Singapore,1.28967,103.85007,Asia/Singapore,5638700,mega-city
-Kampala,Uganda,0.31628,32.58219,Africa/Kampala,1680600,capital
-Quito,Ecuador,-0.22985,-78.52495,America/Guayaquil,2781641,capital
-Nairobi,Kenya,-1.28333,36.81667,Africa/Nairobi,4397073,mega-city
-Kigali,Rwanda,-1.94995,30.05885,Africa/Kigali,1132686,capital
-Gitega,Burundi,-3.42708,29.92463,Africa/Bujumbura,64904,capital
-Brazzaville,Republic of the Congo,-4.26613,15.28318,Africa/Brazzaville,1982000,capital
-Kinshasa,Democratic Republic of the Congo,-4.32758,15.31357,Africa/Kinshasa,16000000,mega-city
-Dodoma,Tanzania,-6.17221,35.73947,Africa/Dar_es_Salaam,765179,capital
-Jakarta,Indonesia,-6.21462,106.84513,Asia/Jakarta,8540121,mega-city
-Dar es Salaam,Tanzania,-6.82349,39.26951,Africa/Dar_es_Salaam,5383728,mega-city
-Surabaya,Indonesia,-7.24917,112.75083,Asia/Jakarta,3018022,mega-city
-Luanda,Angola,-8.83682,13.23432,Africa/Luanda,2776168,capital
-Port Moresby,Papua New Guinea,-9.47723,147.15089,Pacific/Port_Moresby,283733,capital
-Lima,Peru,-12.04318,-77.02824,America/Lima,7737002,mega-city
-Lilongwe,Malawi,-13.96692,33.78725,Africa/Blantyre,1115815,capital
-Lusaka,Zambia,-15.40669,28.28713,Africa/Lusaka,2212301,capital
-Brasília,Brazil,-15.77972,-47.92972,America/Sao_Paulo,2207718,capital
-Harare,Zimbabwe,-17.82772,31.05337,Africa/Harare,1542813,capital
-Antananarivo,Madagascar,-18.91368,47.53613,Indian/Antananarivo,1349501,capital
-Sucre,Bolivia,-19.03332,-65.26274,America/La_Paz,224838,capital
-Rio de Janeiro,Brazil,-22.90642,-43.18223,America/Sao_Paulo,6747815,mega-city
-São Paulo,Brazil,-23.5475,-46.63611,America/Sao_Paulo,12400232,mega-city
-Asunción,Paraguay,-25.28646,-57.647,America/Asuncion,1482200,capital
-Pretoria,South Africa,-25.74486,28.18783,Africa/Johannesburg,2112693,capital
-Maputo,Mozambique,-25.96553,32.58322,Africa/Maputo,1254837,capital
-Johannesburg,South Africa,-26.20227,28.04363,Africa/Johannesburg,9418183,mega-city
-Durban,South Africa,-29.8579,31.0292,Africa/Johannesburg,3338026,mega-city
-Santiago,Chile,-33.45694,-70.64827,America/Santiago,4837295,mega-city
-Sydney,Australia,-33.86785,151.20732,Australia/Sydney,5638830,mega-city
-Cape Town,South Africa,-33.92584,18.42322,Africa/Johannesburg,4772846,mega-city
-Buenos Aires,Argentina,-34.61315,-58.37723,America/Argentina/Buenos_Aires,2891082,capital
-Canberra,Australia,-35.28346,149.12807,Australia/Sydney,367752,capital
-Melbourne,Australia,-37.814,144.96332,Australia/Melbourne,5435590,mega-city
-Christchurch,New Zealand,-43.53333,172.63333,Pacific/Auckland,419200,latitude-coverage
-Punta Arenas,Chile,-53.16282,-70.90922,America/Punta_Arenas,117430,latitude-coverage
+name,country,country_code,lat,lon,timezone,population,selection_reason
+Longyearbyen,Svalbard and Jan Mayen,SJ,78.22334,15.64689,Arctic/Longyearbyen,2368,latitude-coverage
+Helsinki,Finland,FI,60.16952,24.93545,Europe/Helsinki,658864,capital
+Saint Petersburg,Russia,RU,59.93863,30.31413,Europe/Moscow,5351935,mega-city
+Oslo,Norway,NO,59.91273,10.74609,Europe/Oslo,1082575,capital
+Stockholm,Sweden,SE,59.32938,18.06871,Europe/Stockholm,1515017,capital
+Moscow,Russia,RU,55.75204,37.61781,Europe/Moscow,10381222,mega-city
+Copenhagen,Denmark,DK,55.67594,12.56553,Europe/Copenhagen,1153615,capital
+Minsk,Belarus,BY,53.90019,27.56653,Europe/Minsk,1742124,capital
+Berlin,Germany,DE,52.52437,13.41053,Europe/Berlin,3426354,mega-city
+Amsterdam,The Netherlands,NL,52.37403,4.88969,Europe/Amsterdam,741636,capital
+Warsaw,Poland,PL,52.22977,21.01178,Europe/Warsaw,1702139,capital
+London,United Kingdom,GB,51.50853,-0.12574,Europe/London,8961989,mega-city
+Astana,Kazakhstan,KZ,51.1801,71.44598,Asia/Almaty,1544142,capital
+Brussels,Belgium,BE,50.85045,4.34878,Europe/Brussels,1019022,capital
+Kyiv,Ukraine,UA,50.45466,30.5238,Europe/Kyiv,2952301,capital
+Prague,Czechia,CZ,50.08804,14.42076,Europe/Prague,1165581,capital
+Paris,France,FR,48.85341,2.3488,Europe/Paris,2138551,capital
+Vienna,Austria,AT,48.20849,16.37208,Europe/Vienna,1691468,capital
+Bratislava,Slovakia,SK,48.14816,17.10674,Europe/Bratislava,423737,capital
+Budapest,Hungary,HU,47.49835,19.04045,Europe/Budapest,1741041,capital
+Bern,Switzerland,CH,46.94809,7.44744,Europe/Zurich,121631,capital
+Harbin,China,CN,45.75,126.65,Asia/Shanghai,5242897,mega-city
+Ottawa,Canada,CA,45.41117,-75.69812,America/Toronto,1017449,capital
+Belgrade,Serbia,RS,44.80401,20.46513,Europe/Belgrade,1273651,capital
+Bucharest,Romania,RO,44.43225,26.10626,Europe/Bucharest,1877155,capital
+Changchun,China,CN,43.88,125.32278,Asia/Shanghai,4714996,mega-city
+Ürümqi,China,CN,43.80096,87.60046,Asia/Urumqi,3029372,mega-city
+Bishkek,Kyrgyzstan,KG,42.87,74.59,Asia/Bishkek,900000,capital
+Sofia,Bulgaria,BG,42.69751,23.32415,Europe/Sofia,1152556,capital
+Rome,Italy,IT,41.89193,12.51133,Europe/Rome,2318895,capital
+Shenyang,China,CN,41.79222,123.43278,Asia/Shanghai,7050000,mega-city
+Tashkent,Uzbekistan,UZ,41.26465,69.21627,Asia/Tashkent,1978028,capital
+Istanbul,Turkey,TR,41.01384,28.94966,Europe/Istanbul,15701602,mega-city
+New York City,United States,US,40.71427,-74.00597,America/New_York,8804190,mega-city
+Madrid,Spain,ES,40.4165,-3.70256,Europe/Madrid,3255944,mega-city
+Baku,Azerbaijan,AZ,40.37767,49.89201,Asia/Baku,2351300,capital
+Bursa,Turkey,TR,40.19559,29.06013,Europe/Istanbul,3101833,mega-city
+Ankara,Turkey,TR,39.91987,32.85427,Europe/Istanbul,3517182,mega-city
+Beijing,China,CN,39.9075,116.39723,Asia/Shanghai,18960744,mega-city
+Tangshan,China,CN,39.64381,118.18319,Asia/Shanghai,3372102,mega-city
+Tianjin,China,CN,39.14222,117.17667,Asia/Shanghai,11090314,mega-city
+Pyongyang,North Korea,KP,39.03385,125.75432,Asia/Pyongyang,3222000,mega-city
+Dalian,China,CN,38.91222,121.60222,Asia/Shanghai,4913879,mega-city
+Washington,United States,US,38.89511,-77.03637,America/New_York,689545,capital
+Lisbon,Portugal,PT,38.72509,-9.1498,Europe/Lisbon,517802,capital
+Dushanbe,Tajikistan,TJ,38.53575,68.77905,Asia/Dushanbe,679400,capital
+Shijiazhuang,China,CN,38.04139,114.47861,Asia/Shanghai,3938513,mega-city
+Wuzhong,China,CN,37.9867,106.201,Asia/Shanghai,7202654,mega-city
+Athens,Greece,GR,37.98376,23.72784,Europe/Athens,664046,capital
+Ashgabat,Turkmenistan,TM,37.95,58.38333,Asia/Ashgabat,1030063,capital
+Taiyuan,China,CN,37.86944,112.56028,Asia/Shanghai,4303673,mega-city
+Seoul,South Korea,KR,37.566,126.9784,Asia/Seoul,10349312,mega-city
+Lüliang,China,CN,37.5192,111.14436,Asia/Shanghai,3346500,mega-city
+Incheon,South Korea,KR,37.45646,126.70515,Asia/Seoul,3015482,mega-city
+Tunis,Tunisia,TN,36.81897,10.16579,Africa/Tunis,693210,capital
+Zibo,China,CN,36.79056,118.06333,Asia/Shanghai,3129228,mega-city
+Algiers,Algeria,DZ,36.73225,3.08746,Africa/Algiers,2364230,capital
+Jinan,China,CN,36.66833,116.99722,Asia/Shanghai,4335989,mega-city
+Qingdao,China,CN,36.06488,120.38042,Asia/Shanghai,7172451,mega-city
+Tehran,Iran,IR,35.69439,51.42151,Asia/Tehran,7153309,mega-city
+Tokyo,Japan,JP,35.6895,139.69171,Asia/Tokyo,9733276,mega-city
+Yokohama,Japan,JP,35.43333,139.65,Asia/Tokyo,3777491,mega-city
+Busan,South Korea,KR,35.10168,129.03004,Asia/Seoul,3285147,mega-city
+Zhengzhou,China,CN,34.75778,113.64861,Asia/Shanghai,4253913,mega-city
+Kabul,Afghanistan,AF,34.52813,69.17233,Asia/Kabul,4434550,mega-city
+Xi’an,China,CN,34.25833,108.92861,Asia/Shanghai,9600000,mega-city
+Los Angeles,United States,US,34.05223,-118.24368,America/Los_Angeles,3820914,mega-city
+Rabat,Morocco,MA,34.01325,-6.83255,Africa/Casablanca,1655753,capital
+Peshawar,Pakistan,PK,34.008,71.57849,Asia/Karachi,4758762,mega-city
+Beirut,Lebanon,LB,33.89332,35.50157,Asia/Beirut,1916100,capital
+Islamabad,Pakistan,PK,33.72148,73.04329,Asia/Karachi,601600,capital
+Rawalpindi,Pakistan,PK,33.59733,73.0479,Asia/Karachi,3357612,mega-city
+Casablanca,Morocco,MA,33.58831,-7.61138,Africa/Casablanca,3665954,mega-city
+Damascus,Syria,SY,33.5102,36.29128,Asia/Damascus,1569394,capital
+Baghdad,Iraq,IQ,33.34058,44.40088,Asia/Baghdad,7216000,mega-city
+Tripoli,Libya,LY,32.88743,13.18733,Africa/Tripoli,1302947,capital
+Shiyan,China,CN,32.6475,110.77806,Asia/Shanghai,3460000,mega-city
+Nanjing,China,CN,32.06167,118.77778,Asia/Shanghai,9314685,mega-city
+Amman,Jordan,JO,31.95522,35.94503,Asia/Amman,1275857,capital
+Hefei,China,CN,31.86389,117.28083,Asia/Shanghai,5050000,mega-city
+Changzhou,China,CN,31.77359,119.95401,Asia/Shanghai,3290918,mega-city
+Wuxi,China,CN,31.56887,120.28857,Asia/Shanghai,4396835,mega-city
+Lahore,Pakistan,PK,31.558,74.35071,Asia/Karachi,13004135,mega-city
+Faisalabad,Pakistan,PK,31.41554,73.08969,Asia/Karachi,3800193,mega-city
+Suzhou,China,CN,31.30408,120.59538,Asia/Shanghai,6715559,mega-city
+Puxi,China,CN,31.24414,121.46592,Asia/Shanghai,6683712,mega-city
+Pudong,China,CN,31.23995,121.50094,Asia/Shanghai,5681512,mega-city
+Shanghai,China,CN,31.22222,121.45806,Asia/Shanghai,24874500,mega-city
+Alexandria,Egypt,EG,31.20176,29.91582,Africa/Cairo,5263542,mega-city
+Chengdu,China,CN,30.66667,104.06667,Asia/Shanghai,13568357,mega-city
+Wuhan,China,CN,30.58333,114.26667,Asia/Shanghai,10392693,mega-city
+Hangzhou,China,CN,30.29365,120.16142,Asia/Shanghai,9236032,mega-city
+Cairo,Egypt,EG,30.06263,31.24967,Africa/Cairo,9606916,mega-city
+Giza,Egypt,EG,30.00944,31.20861,Africa/Cairo,4367343,mega-city
+Ningbo,China,CN,29.87819,121.54945,Asia/Shanghai,3731203,mega-city
+Chongqing,China,CN,29.56026,106.55771,Asia/Shanghai,7457599,mega-city
+Puyang,China,CN,29.45679,119.88872,Asia/Shanghai,3590000,mega-city
+Delhi,India,IN,28.65195,77.23149,Asia/Kolkata,11034555,mega-city
+New Delhi,India,IN,28.62137,77.2148,Asia/Kolkata,317797,capital
+Changsha,China,CN,28.19874,112.97087,Asia/Shanghai,3093980,mega-city
+Kathmandu,Nepal,NP,27.70169,85.3206,Asia/Kathmandu,1442271,capital
+Jaipur,India,IN,26.91962,75.78781,Asia/Kolkata,3046163,mega-city
+Guiyang,China,CN,26.58333,106.71667,Asia/Shanghai,3037159,mega-city
+Fuzhou,China,CN,26.06139,119.30611,Asia/Shanghai,3740000,mega-city
+Dubai,United Arab Emirates,AE,25.07725,55.30927,Asia/Dubai,3790000,mega-city
+New Taipei City,Taiwan,TW,25.06199,121.45703,Asia/Taipei,4004367,mega-city
+Taipei,Taiwan,TW,25.05306,121.52639,Asia/Taipei,7871900,mega-city
+Kunming,China,CN,25.03889,102.71833,Asia/Shanghai,3855346,mega-city
+Karachi,Pakistan,PK,24.8608,67.0104,Asia/Karachi,11624219,mega-city
+Riyadh,Saudi Arabia,SA,24.68773,46.72185,Asia/Riyadh,4205961,mega-city
+Xiamen,China,CN,24.47979,118.08187,Asia/Shanghai,4617251,mega-city
+Abu Dhabi,United Arab Emirates,AE,24.45118,54.39696,Asia/Dubai,1807000,capital
+Dhaka,Bangladesh,BD,23.7104,90.40744,Asia/Dhaka,10356500,mega-city
+Shantou,China,CN,23.35489,116.67876,Asia/Shanghai,3838900,mega-city
+Havana,Cuba,CU,23.13302,-82.38304,America/Havana,2163824,capital
+Guangzhou,China,CN,23.11667,113.25,Asia/Shanghai,16096724,mega-city
+Foshan,China,CN,23.02677,113.13148,Asia/Shanghai,9042509,mega-city
+Ahmedabad,India,IN,23.02579,72.58727,Asia/Kolkata,6357693,mega-city
+Dongguan,China,CN,23.01797,113.74866,Asia/Shanghai,9644871,mega-city
+Nanning,China,CN,22.81667,108.31667,Asia/Shanghai,3839800,mega-city
+Kolkata,India,IN,22.56263,88.36304,Asia/Kolkata,4631392,mega-city
+Bao'an,China,CN,22.55213,113.88288,Asia/Shanghai,4476554,mega-city
+Shenzhen,China,CN,22.54554,114.0683,Asia/Shanghai,17494398,mega-city
+Zhongshan,China,CN,22.52306,113.37912,Asia/Shanghai,3841873,mega-city
+New Territories,Hong Kong,HK,22.42441,114.11095,Asia/Hong_Kong,3984077,mega-city
+Chattogram,Bangladesh,BD,22.3384,91.83168,Asia/Dhaka,3920222,mega-city
+Hong Kong,Hong Kong,HK,22.27832,114.17469,Asia/Hong_Kong,7396076,mega-city
+Jeddah,Saudi Arabia,SA,21.49012,39.18624,Asia/Riyadh,4697000,mega-city
+Surat,India,IN,21.19594,72.83023,Asia/Kolkata,4591246,mega-city
+Hanoi,Vietnam,VN,21.0245,105.84117,Asia/Bangkok,8053663,mega-city
+Nay Pyi Taw,Myanmar,MM,19.745,96.12972,Asia/Yangon,925000,capital
+Mexico City,Mexico,MX,19.42847,-99.12766,America/Mexico_City,12294193,mega-city
+Mumbai,India,IN,19.07283,72.88261,Asia/Kolkata,12691836,mega-city
+Port-au-Prince,Haiti,HT,18.54349,-72.33881,America/Port-au-Prince,1234742,capital
+Pune,India,IN,18.51957,73.85535,Asia/Kolkata,3124458,mega-city
+Santo Domingo,Dominican Republic,DO,18.47186,-69.89232,America/Santo_Domingo,2201941,capital
+Vientiane,Laos,LA,17.96667,102.6,Asia/Vientiane,840940,capital
+Hyderabad,India,IN,17.38405,78.45636,Asia/Kolkata,6993262,mega-city
+Yangon,Myanmar,MM,16.80528,96.15611,Asia/Yangon,4477638,mega-city
+Khartoum,Sudan,SD,15.55177,32.53241,Africa/Khartoum,1974647,capital
+Sanaa,Yemen,YE,15.35452,44.20646,Asia/Aden,1937451,capital
+Asmara,Eritrea,ER,15.33805,38.93184,Africa/Asmara,563930,capital
+Dakar,Senegal,SN,14.6937,-17.44406,Africa/Dakar,2646503,capital
+Quezon City,Philippines,PH,14.6488,121.0509,Asia/Manila,3084270,mega-city
+Guatemala City,Guatemala,GT,14.64072,-90.51327,America/Guatemala,994938,capital
+Manila,Philippines,PH,14.6042,120.9822,Asia/Manila,1600000,capital
+Tegucigalpa,Honduras,HN,14.0818,-87.20681,America/Tegucigalpa,850848,capital
+Bangkok,Thailand,TH,13.75398,100.50144,Asia/Bangkok,5104476,mega-city
+San Salvador,El Salvador,SV,13.68935,-89.18718,America/El_Salvador,525990,capital
+Niamey,Niger,NE,13.51366,2.1098,Africa/Niamey,1323691,capital
+Chennai,India,IN,13.08784,80.27847,Asia/Kolkata,4681087,mega-city
+Bengaluru,India,IN,12.97194,77.59369,Asia/Kolkata,8495492,mega-city
+Bamako,Mali,ML,12.60915,-7.97522,Africa/Bamako,4227569,mega-city
+Ouagadougou,Burkina Faso,BF,12.36566,-1.53388,Africa/Ouagadougou,2415266,capital
+Managua,Nicaragua,NI,12.13282,-86.2504,America/Managua,973087,capital
+N'Djamena,Chad,TD,12.10672,15.0444,Africa/Ndjamena,1359526,capital
+Kano,Nigeria,NG,12.00012,8.51672,Africa/Lagos,4910000,mega-city
+Phnom Penh,Cambodia,KH,11.56245,104.91601,Asia/Phnom_Penh,1573544,capital
+Ho Chi Minh City,Vietnam,VN,10.82302,106.62965,Asia/Ho_Chi_Minh,14002598,mega-city
+Caracas,Venezuela,VE,10.48801,-66.87919,America/Caracas,3000000,capital
+Conakry,Guinea,GN,9.53795,-13.67729,Africa/Conakry,1928389,capital
+Abuja,Nigeria,NG,9.05785,7.49508,Africa/Lagos,2690000,capital
+Addis Ababa,Ethiopia,ET,9.02497,38.74689,Africa/Addis_Ababa,3860000,mega-city
+Freetown,Sierra Leone,SL,8.48714,-13.2356,Africa/Freetown,802639,capital
+Ibadan,Nigeria,NG,7.37756,3.90591,Africa/Lagos,3649000,mega-city
+Colombo,Sri Lanka,LK,6.93548,79.84868,Asia/Colombo,648034,capital
+Yamoussoukro,Ivory Coast,CI,6.82055,-5.27674,Africa/Abidjan,275686,capital
+Porto-Novo,Benin,BJ,6.49646,2.60359,Africa/Porto-Novo,264320,capital
+Lagos,Nigeria,NG,6.45407,3.39467,Africa/Lagos,15388000,mega-city
+Lomé,Togo,TG,6.12874,1.22154,Africa/Lome,2188376,capital
+Accra,Ghana,GH,5.55602,-0.1969,Africa/Accra,1963264,capital
+Abidjan,Ivory Coast,CI,5.35444,-4.00167,Africa/Abidjan,6321017,mega-city
+Juba,South Sudan,SS,4.85165,31.58247,Africa/Juba,450000,capital
+Bogotá,Colombia,CO,4.60971,-74.08175,America/Bogota,7674366,mega-city
+Yaoundé,Cameroon,CM,3.86667,11.51667,Africa/Douala,1299369,capital
+Kuala Lumpur,Malaysia,MY,3.1412,101.68653,Asia/Kuala_Lumpur,1453975,capital
+Mogadishu,Somalia,SO,2.03711,45.34375,Africa/Mogadishu,2587183,capital
+Singapore,Singapore,SG,1.28967,103.85007,Asia/Singapore,5638700,mega-city
+Kampala,Uganda,UG,0.31628,32.58219,Africa/Kampala,1680600,capital
+Quito,Ecuador,EC,-0.22985,-78.52495,America/Guayaquil,2781641,capital
+Nairobi,Kenya,KE,-1.28333,36.81667,Africa/Nairobi,4397073,mega-city
+Kigali,Rwanda,RW,-1.94995,30.05885,Africa/Kigali,1132686,capital
+Gitega,Burundi,BI,-3.42708,29.92463,Africa/Bujumbura,64904,capital
+Brazzaville,Republic of the Congo,CG,-4.26613,15.28318,Africa/Brazzaville,1982000,capital
+Kinshasa,Democratic Republic of the Congo,CD,-4.32758,15.31357,Africa/Kinshasa,16000000,mega-city
+Dodoma,Tanzania,TZ,-6.17221,35.73947,Africa/Dar_es_Salaam,765179,capital
+Jakarta,Indonesia,ID,-6.21462,106.84513,Asia/Jakarta,8540121,mega-city
+Dar es Salaam,Tanzania,TZ,-6.82349,39.26951,Africa/Dar_es_Salaam,5383728,mega-city
+Surabaya,Indonesia,ID,-7.24917,112.75083,Asia/Jakarta,3018022,mega-city
+Luanda,Angola,AO,-8.83682,13.23432,Africa/Luanda,2776168,capital
+Port Moresby,Papua New Guinea,PG,-9.47723,147.15089,Pacific/Port_Moresby,283733,capital
+Lima,Peru,PE,-12.04318,-77.02824,America/Lima,7737002,mega-city
+Lilongwe,Malawi,MW,-13.96692,33.78725,Africa/Blantyre,1115815,capital
+Lusaka,Zambia,ZM,-15.40669,28.28713,Africa/Lusaka,2212301,capital
+Brasília,Brazil,BR,-15.77972,-47.92972,America/Sao_Paulo,2207718,capital
+Harare,Zimbabwe,ZW,-17.82772,31.05337,Africa/Harare,1542813,capital
+Antananarivo,Madagascar,MG,-18.91368,47.53613,Indian/Antananarivo,1349501,capital
+Sucre,Bolivia,BO,-19.03332,-65.26274,America/La_Paz,224838,capital
+Rio de Janeiro,Brazil,BR,-22.90642,-43.18223,America/Sao_Paulo,6747815,mega-city
+São Paulo,Brazil,BR,-23.5475,-46.63611,America/Sao_Paulo,12400232,mega-city
+Asunción,Paraguay,PY,-25.28646,-57.647,America/Asuncion,1482200,capital
+Pretoria,South Africa,ZA,-25.74486,28.18783,Africa/Johannesburg,2112693,capital
+Maputo,Mozambique,MZ,-25.96553,32.58322,Africa/Maputo,1254837,capital
+Johannesburg,South Africa,ZA,-26.20227,28.04363,Africa/Johannesburg,9418183,mega-city
+Durban,South Africa,ZA,-29.8579,31.0292,Africa/Johannesburg,3338026,mega-city
+Santiago,Chile,CL,-33.45694,-70.64827,America/Santiago,4837295,mega-city
+Sydney,Australia,AU,-33.86785,151.20732,Australia/Sydney,5638830,mega-city
+Cape Town,South Africa,ZA,-33.92584,18.42322,Africa/Johannesburg,4772846,mega-city
+Buenos Aires,Argentina,AR,-34.61315,-58.37723,America/Argentina/Buenos_Aires,2891082,capital
+Canberra,Australia,AU,-35.28346,149.12807,Australia/Sydney,367752,capital
+Melbourne,Australia,AU,-37.814,144.96332,Australia/Melbourne,5435590,mega-city
+Christchurch,New Zealand,NZ,-43.53333,172.63333,Pacific/Auckland,419200,latitude-coverage
+Punta Arenas,Chile,CL,-53.16282,-70.90922,America/Punta_Arenas,117430,latitude-coverage

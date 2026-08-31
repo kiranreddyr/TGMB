@@ -11,6 +11,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { loadCities } from "./loadCities.js";
 import { fetchWeatherForCities } from "./openMeteoClient.js";
+import { fetchHolidays } from "./holidaysClient.js";
 import { buildPayload } from "./buildPayload.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -37,7 +38,16 @@ async function main() {
     );
   }
 
-  const payload = buildPayload(weather);
+  const holidayStarted = Date.now();
+  const countryCodes = cities.map((c) => c.countryCode).filter(Boolean);
+  const holidays = await fetchHolidays(countryCodes, new Date().getFullYear());
+  const uncovered = [...holidays.entries()].filter(([, list]) => list === null).length;
+  console.log(
+    `Fetched public holidays for ${holidays.size} countries in ${Date.now() - holidayStarted}ms ` +
+      `(${uncovered} not covered by the API — treated as unknown, not "no holiday")`,
+  );
+
+  const payload = buildPayload(weather, holidays);
 
   await mkdir(OUTPUT_DIR, { recursive: true });
   const json = JSON.stringify(payload);

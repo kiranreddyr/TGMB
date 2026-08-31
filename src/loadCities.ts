@@ -15,6 +15,7 @@ export async function loadCities(csvPath: string): Promise<City[]> {
     return {
       name: record.name ?? "",
       country: record.country ?? "",
+      countryCode: record.country_code ?? "",
       lat: Number(record.lat),
       lon: Number(record.lon),
       timezone: record.timezone ?? "UTC",
