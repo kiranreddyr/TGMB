@@ -17,7 +17,21 @@ export interface CityPayload {
     reason: string;
     stale: boolean;
   };
-  forward: number[];
+  /** Basic hourly forecast for the next hours, starting at `current.time`. */
+  forward: Array<{
+    time: string;
+    score: number;
+    apparentTemperature: number;
+    precipitationProbability: number;
+  }>;
+  /** Basic daily outlook, starting today. */
+  daily: Array<{
+    date: string;
+    condition: string;
+    temperatureMax: number;
+    temperatureMin: number;
+    precipitationProbabilityMax: number;
+  }>;
 }
 
 export interface MeltPayload {

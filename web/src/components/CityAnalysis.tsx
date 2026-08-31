@@ -1,5 +1,6 @@
 import { colorForScore, type CityPayload } from "@/lib/payload";
 import Sparkline from "./Sparkline";
+import DailyForecast from "./DailyForecast";
 import styles from "./CityAnalysis.module.css";
 
 interface CityAnalysisProps {
@@ -61,15 +62,20 @@ export default function CityAnalysis({ city, onBack }: CityAnalysisProps) {
       )}
 
       <div className={styles.sparklineSection}>
-        <div className={styles.sparklineLabel}>Next 48 hours</div>
+        <div className={styles.sparklineLabel}>Melt Score, next 48 hours</div>
         <div className={styles.sparklineWrap}>
-          <Sparkline values={city.forward} color={color} />
+          <Sparkline values={city.forward.map((p) => p.score)} color={color} />
         </div>
         <div className={styles.sparklineAxis}>
           <span>Now</span>
           <span>+24h</span>
           <span>+48h</span>
         </div>
+      </div>
+
+      <div className={styles.sparklineSection}>
+        <div className={styles.sparklineLabel}>7-day outlook</div>
+        <DailyForecast days={city.daily} />
       </div>
     </div>
   );

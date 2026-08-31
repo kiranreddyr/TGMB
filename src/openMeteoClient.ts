@@ -8,10 +8,13 @@ const FORECAST_ENDPOINT = "https://api.open-meteo.com/v1/forecast";
  * "a small number of requests, not 200," not "one request." */
 const DEFAULT_BATCH_SIZE = 50;
 
-/** 3 days of hourly data guarantees a full 48h-forward slice from "now" no
- * matter where in day 1 "now" falls (worst case: hour 23 of day 1 needs data
- * through hour 71, i.e. the last hour of day 3). */
-const FORECAST_DAYS = 3;
+/** 7 days of hourly + daily data: comfortably covers the 48h-forward hourly
+ * slice (worst case, "now" at hour 23 of day 1, needs through hour 71) with
+ * room to spare, and gives a full week for the daily outlook. Requesting
+ * more hourly days than we use for `forward` costs the fetch job a slightly
+ * larger response to parse — it does not affect the payload we publish,
+ * since `forward` still only slices the first 48 hours. */
+const FORECAST_DAYS = 7;
 const FORWARD_HOURS = 48;
 
 const HOURLY_VARS = [
@@ -23,6 +26,8 @@ const HOURLY_VARS = [
   "is_day",
   "uv_index",
 ] as const;
+
+const DAILY_VARS = ["weather_code", "temperature_2m_max", "temperature_2m_min", "precipitation_probability_max"] as const;
 
 interface OpenMeteoHourlyResponse {
   latitude: number;
@@ -38,6 +43,13 @@ interface OpenMeteoHourlyResponse {
     is_day: (0 | 1)[];
     uv_index: number[];
   };
+  daily: {
+    time: string[];
+    weather_code: number[];
+    temperature_2m_max: number[];
+    temperature_2m_min: number[];
+    precipitation_probability_max: number[];
+  };
 }
 
 export interface HourPoint {
@@ -45,11 +57,21 @@ export interface HourPoint {
   inputs: WeatherInputs;
 }
 
+export interface DayPoint {
+  date: string;
+  weatherCode: number;
+  temperatureMax: number;
+  temperatureMin: number;
+  precipitationProbabilityMax: number;
+}
+
 export interface CityWeather {
   city: City;
   current: HourPoint;
   /** Up to 48 hourly points starting at the current hour, for sparklines. */
   forward: HourPoint[];
+  /** Up to 7 daily points starting today, for a basic multi-day outlook. */
+  daily: DayPoint[];
   stale: boolean;
 }
 
@@ -83,6 +105,7 @@ async function fetchBatch(cities: City[]): Promise<CityWeather[]> {
   url.searchParams.set("latitude", cities.map((c) => c.lat).join(","));
   url.searchParams.set("longitude", cities.map((c) => c.lon).join(","));
   url.searchParams.set("hourly", HOURLY_VARS.join(","));
+  url.searchParams.set("daily", DAILY_VARS.join(","));
   url.searchParams.set("timezone", "auto");
   url.searchParams.set("forecast_days", String(FORECAST_DAYS));
 
@@ -132,10 +155,19 @@ function toCityWeather(city: City, data: OpenMeteoHourlyResponse): CityWeather {
     forward.push(pointAt(i));
   }
 
+  const daily: DayPoint[] = data.daily.time.map((date, i) => ({
+    date,
+    weatherCode: at(data.daily.weather_code, i, city.name),
+    temperatureMax: at(data.daily.temperature_2m_max, i, city.name),
+    temperatureMin: at(data.daily.temperature_2m_min, i, city.name),
+    precipitationProbabilityMax: at(data.daily.precipitation_probability_max, i, city.name),
+  }));
+
   return {
     city,
     current: pointAt(index),
     forward,
+    daily,
     stale,
   };
 }

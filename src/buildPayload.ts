@@ -1,5 +1,6 @@
 import type { CityWeather } from "./openMeteoClient.js";
 import { computeMeltScore, explainScore, MELT_SCORE_FORMULA_VERSION } from "./scoreEngine.js";
+import { describeWeatherCode } from "./weatherCode.js";
 
 export interface CityPayload {
   id: string;
@@ -16,8 +17,21 @@ export interface CityPayload {
     reason: string;
     stale: boolean;
   };
-  /** Melt Score for each of the next hours, starting at `current.time`, one entry per hour. */
-  forward: number[];
+  /** Basic hourly forecast for the next hours, starting at `current.time`. */
+  forward: Array<{
+    time: string;
+    score: number;
+    apparentTemperature: number;
+    precipitationProbability: number;
+  }>;
+  /** Basic daily outlook, starting today. */
+  daily: Array<{
+    date: string;
+    condition: string;
+    temperatureMax: number;
+    temperatureMin: number;
+    precipitationProbabilityMax: number;
+  }>;
 }
 
 export interface MeltPayload {
@@ -37,7 +51,7 @@ export function slugify(name: string, country: string): string {
 }
 
 export function buildPayload(weather: CityWeather[]): MeltPayload {
-  const cities: CityPayload[] = weather.map(({ city, current, forward, stale }) => {
+  const cities: CityPayload[] = weather.map(({ city, current, forward, daily, stale }) => {
     const result = computeMeltScore(current.inputs);
     return {
       id: slugify(city.name, city.country),
@@ -54,7 +68,19 @@ export function buildPayload(weather: CityWeather[]): MeltPayload {
         reason: explainScore(current.inputs, result),
         stale,
       },
-      forward: forward.map((point) => Math.round(computeMeltScore(point.inputs).score)),
+      forward: forward.map((point) => ({
+        time: point.time,
+        score: Math.round(computeMeltScore(point.inputs).score),
+        apparentTemperature: Math.round(point.inputs.apparentTemperature * 10) / 10,
+        precipitationProbability: point.inputs.precipitationProbability,
+      })),
+      daily: daily.map((day) => ({
+        date: day.date,
+        condition: describeWeatherCode(day.weatherCode),
+        temperatureMax: Math.round(day.temperatureMax * 10) / 10,
+        temperatureMin: Math.round(day.temperatureMin * 10) / 10,
+        precipitationProbabilityMax: day.precipitationProbabilityMax,
+      })),
     };
   });
 
