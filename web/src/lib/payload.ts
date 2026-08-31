@@ -42,6 +42,8 @@ export interface CityPayload {
   }>;
   /** First hour in the next 7 days scoring "Peak melt" (>=85) — null if none this week. */
   nextPeakWindow: { time: string; score: number } | null;
+  /** 1-indexed rank by current score among all tracked cities, hottest first — ties share a rank. */
+  rank: number;
 }
 
 export interface MeltPayload {

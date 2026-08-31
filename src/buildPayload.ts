@@ -44,6 +44,8 @@ export interface CityPayload {
   }>;
   /** First hour in the next 7 days scoring "Peak melt" (>=85) — null if none this week. */
   nextPeakWindow: { time: string; score: number } | null;
+  /** 1-indexed rank by current score among all tracked cities, hottest first — ties share a rank. */
+  rank: number;
 }
 
 export interface MeltPayload {
@@ -115,7 +117,22 @@ export function buildPayload(
         precipitationProbabilityMax: day.precipitationProbabilityMax,
       })),
       nextPeakWindow: nextPeakWindow ? { time: nextPeakWindow.time, score: Math.round(nextPeakWindow.score) } : null,
+      rank: 0, // filled in below, once every city's score is known
     };
+  });
+
+  // Competition ranking (ties share a rank, the next distinct score skips
+  // ahead) over the just-built array, so `rank` doesn't depend on the
+  // input order of `weather`.
+  const byScoreDesc = [...cities].sort((a, b) => b.current.score - a.current.score);
+  let rank = 0;
+  let lastScore: number | null = null;
+  byScoreDesc.forEach((city, i) => {
+    if (city.current.score !== lastScore) {
+      rank = i + 1;
+      lastScore = city.current.score;
+    }
+    city.rank = rank;
   });
 
   const seenSlugs = new Set<string>();

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { colorForScore, type CityPayload } from "@/lib/payload";
+import { assetUrl, colorForScore, type CityPayload } from "@/lib/payload";
 import { loadPayloadAtBuildTime } from "@/lib/loadPayloadAtBuildTime";
 import { describeNextMeltWindow } from "@/lib/nextMeltWindow";
 import Sparkline from "@/components/Sparkline";
@@ -32,6 +32,12 @@ export async function generateMetadata(props: PageProps<"/city/[slug]">): Promis
   const score = Math.round(city.current.score);
   const title = `${city.name}: ${score}/100 Melt Score — The Global Melt Belt`;
   const description = `${city.current.band} in ${city.name}, ${city.country} right now — ${city.current.apparentTemperature.toFixed(1)}°C feels-like. ${city.current.reason}`;
+  const cardImage = {
+    url: assetUrl(`/share/${city.slug}.png`),
+    width: 1200,
+    height: 630,
+    alt: `${city.name}: ${score}/100 Melt Score, ${city.current.band}`,
+  };
 
   return {
     title,
@@ -40,11 +46,13 @@ export async function generateMetadata(props: PageProps<"/city/[slug]">): Promis
       title,
       description,
       type: "website",
+      images: [cardImage],
     },
     twitter: {
-      card: "summary",
+      card: "summary_large_image",
       title,
       description,
+      images: [cardImage.url],
     },
   };
 }

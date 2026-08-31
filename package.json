@@ -9,12 +9,16 @@
     "phase0": "tsx src/phase0.ts",
     "build:cities": "tsx scripts/build-city-list.ts",
     "hourly-job": "tsx src/hourlyJob.ts",
-    "sync-web-data": "node -e \"require('fs').mkdirSync('web/public/data',{recursive:true});require('fs').copyFileSync('data/output/melt-payload.json','web/public/data/melt-payload.json')\"",
+    "sync-web-data": "node -e \"require('fs').mkdirSync('web/public/data',{recursive:true});require('fs').copyFileSync('data/output/melt-payload.json','web/public/data/melt-payload.json');require('fs').cpSync('data/output/share','web/public/share',{recursive:true})\"",
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
     "@types/node": "^22.10.2",
     "tsx": "^4.19.2",
     "typescript": "^5.7.2"
+  },
+  "dependencies": {
+    "@resvg/resvg-js": "^2.6.2",
+    "satori": "^0.33.4"
   }
 }

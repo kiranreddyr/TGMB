@@ -24,7 +24,11 @@ const plexMono = IBM_Plex_Mono({
   display: "swap",
 });
 
+// Origin only (no /TGMB) — relative image URLs built with the basePath-aware
+// assetUrl() helper already include the repo path, so metadataBase must not
+// double it up.
 export const metadata: Metadata = {
+  metadataBase: new URL("https://kiranreddyr.github.io"),
   title: "The Global Melt Belt",
   description:
     "A live globe showing where on Earth it is perfect ice cream weather right now, updated hourly from live weather data.",

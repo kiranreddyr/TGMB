@@ -14,11 +14,13 @@ import { fetchWeatherForCities } from "./openMeteoClient.js";
 import { fetchHolidays } from "./holidaysClient.js";
 import { fetchAgeStructure } from "./ageStructureClient.js";
 import { buildPayload } from "./buildPayload.js";
+import { generateShareCards } from "./shareCards.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const CITIES_CSV = path.join(__dirname, "..", "data", "cities.csv");
 const OUTPUT_DIR = path.join(__dirname, "..", "data", "output");
 const OUTPUT_FILE = path.join(OUTPUT_DIR, "melt-payload.json");
+const SHARE_CARDS_DIR = path.join(OUTPUT_DIR, "share");
 
 /** Target from PRD section 7: under 500 KB gzipped for ~200 cities with 48h forward series. */
 const PAYLOAD_SIZE_BUDGET_BYTES = 500 * 1024;
@@ -73,6 +75,10 @@ async function main() {
         "Consider splitting into a light payload + lazy-loaded detail payload (PRD section 7).",
     );
   }
+
+  const cardsStarted = Date.now();
+  await generateShareCards(payload, SHARE_CARDS_DIR);
+  console.log(`Wrote ${payload.cities.length} share cards to ${SHARE_CARDS_DIR} in ${Date.now() - cardsStarted}ms`);
 }
 
 main().catch((err) => {
