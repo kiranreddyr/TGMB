@@ -47,6 +47,8 @@ Planned phasing (see the PRD for full detail):
 | 4. Launch | Load test, open source the repo, publish, post to launch channels | In progress |
 | 5. P1 | Time scrubber, hemisphere chart, embeddable widget | Not started |
 
+**v2 roadmap** — share cards, city permalinks, the credibility layer (Peak Cone Hour, hemisphere handoff, the historical melt-days chart), an open CC BY dataset, opt-in anonymous push, and a Freeze Belt companion product are all scoped in detail in PRD.docx, section 16. Not started; see the PRD before picking any of these up.
+
 ## Deployment
 
 `web/` is a Next.js static export (`output: "export"`), served from GitHub Pages at the `/TGMB` sub-path — [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml) rebuilds and republishes it on every push to `main`, once an hour on a cron schedule (the "scheduler" from PRD section 7), and on demand from the Actions tab. Each run re-fetches weather, rebuilds the score payload, and redeploys — nothing is committed back to the repo.
