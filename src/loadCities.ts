@@ -18,6 +18,7 @@ export async function loadCities(csvPath: string): Promise<City[]> {
       lat: Number(record.lat),
       lon: Number(record.lon),
       timezone: record.timezone ?? "UTC",
+      population: Number(record.population) || 0,
     };
   });
 }

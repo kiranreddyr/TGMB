@@ -4,4 +4,5 @@ export interface City {
   lat: number;
   lon: number;
   timezone: string;
+  population: number;
 }

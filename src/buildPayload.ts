@@ -9,6 +9,7 @@ export interface CityPayload {
   lat: number;
   lon: number;
   timezone: string;
+  population: number;
   current: {
     time: string;
     score: number;
@@ -60,6 +61,7 @@ export function buildPayload(weather: CityWeather[]): MeltPayload {
       lat: city.lat,
       lon: city.lon,
       timezone: city.timezone,
+      population: city.population,
       current: {
         time: current.time,
         score: result.score,

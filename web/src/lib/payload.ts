@@ -9,6 +9,7 @@ export interface CityPayload {
   lat: number;
   lon: number;
   timezone: string;
+  population: number;
   current: {
     time: string;
     score: number;

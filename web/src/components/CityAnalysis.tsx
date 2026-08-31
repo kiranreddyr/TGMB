@@ -1,6 +1,7 @@
 import { colorForScore, type CityPayload } from "@/lib/payload";
 import Sparkline from "./Sparkline";
 import DailyForecast from "./DailyForecast";
+import DemandIndex from "./DemandIndex";
 import styles from "./CityAnalysis.module.css";
 
 interface CityAnalysisProps {
@@ -76,6 +77,10 @@ export default function CityAnalysis({ city, onBack }: CityAnalysisProps) {
       <div className={styles.sparklineSection}>
         <div className={styles.sparklineLabel}>7-day outlook</div>
         <DailyForecast days={city.daily} />
+      </div>
+
+      <div className={styles.sparklineSection}>
+        <DemandIndex city={city} />
       </div>
     </div>
   );
