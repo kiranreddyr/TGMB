@@ -2,6 +2,7 @@ import type { CityWeather } from "./openMeteoClient.js";
 import { computeMeltScore, explainScore, MELT_SCORE_FORMULA_VERSION } from "./scoreEngine.js";
 import { describeWeatherCode } from "./weatherCode.js";
 import { holidayOn, type HolidaysByCountry } from "./holidaysClient.js";
+import type { AgeStructureByCountry } from "./ageStructureClient.js";
 
 export interface CityPayload {
   id: string;
@@ -11,6 +12,8 @@ export interface CityPayload {
   lon: number;
   timezone: string;
   population: number;
+  /** % of this country's population aged 15-64 (World Bank), or null when that country isn't covered — falls back to a flat assumption, never guessed. */
+  ageRelevantSharePercent: number | null;
   current: {
     time: string;
     score: number;
@@ -55,7 +58,11 @@ export function slugify(name: string, country: string): string {
     .replace(/^-+|-+$/g, "");
 }
 
-export function buildPayload(weather: CityWeather[], holidays: HolidaysByCountry = new Map()): MeltPayload {
+export function buildPayload(
+  weather: CityWeather[],
+  holidays: HolidaysByCountry = new Map(),
+  ageStructure: AgeStructureByCountry = new Map(),
+): MeltPayload {
   const cities: CityPayload[] = weather.map(({ city, current, forward, daily, stale }) => {
     const result = computeMeltScore(current.inputs);
     const countryHolidays = holidays.get(city.countryCode) ?? null;
@@ -69,6 +76,7 @@ export function buildPayload(weather: CityWeather[], holidays: HolidaysByCountry
       lon: city.lon,
       timezone: city.timezone,
       population: city.population,
+      ageRelevantSharePercent: ageStructure.get(city.countryCode) ?? null,
       current: {
         time: current.time,
         score: result.score,

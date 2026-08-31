@@ -12,6 +12,7 @@ import { fileURLToPath } from "node:url";
 import { loadCities } from "./loadCities.js";
 import { fetchWeatherForCities } from "./openMeteoClient.js";
 import { fetchHolidays } from "./holidaysClient.js";
+import { fetchAgeStructure } from "./ageStructureClient.js";
 import { buildPayload } from "./buildPayload.js";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -47,7 +48,15 @@ async function main() {
       `(${uncovered} not covered by the API — treated as unknown, not "no holiday")`,
   );
 
-  const payload = buildPayload(weather, holidays);
+  const ageStructureStarted = Date.now();
+  const ageStructure = await fetchAgeStructure(countryCodes);
+  const ageUncovered = [...ageStructure.values()].filter((v) => v === null).length;
+  console.log(
+    `Fetched age-structure data for ${ageStructure.size} countries in ${Date.now() - ageStructureStarted}ms ` +
+      `(${ageUncovered} not covered — falls back to the flat assumption)`,
+  );
+
+  const payload = buildPayload(weather, holidays, ageStructure);
 
   await mkdir(OUTPUT_DIR, { recursive: true });
   const json = JSON.stringify(payload);

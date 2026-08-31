@@ -10,6 +10,8 @@ export interface CityPayload {
   lon: number;
   timezone: string;
   population: number;
+  /** % of this country's population aged 15-64 (World Bank), or null when that country isn't covered — falls back to a flat assumption, never guessed. */
+  ageRelevantSharePercent: number | null;
   current: {
     time: string;
     score: number;

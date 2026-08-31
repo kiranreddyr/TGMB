@@ -65,8 +65,9 @@
 
 .assumption {
   display: flex;
-  justify-content: space-between;
-  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
   font-size: 11px;
 }
 
@@ -75,10 +76,34 @@
   flex-shrink: 0;
 }
 
+.tagReal,
+.tagAssumed {
+  font-family: var(--font-data);
+  font-size: 8.5px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: 3px;
+  padding: 1px 5px;
+  flex-shrink: 0;
+}
+
+.tagReal {
+  color: #6fcf97;
+  background: rgba(111, 207, 151, 0.12);
+  border: 1px solid rgba(111, 207, 151, 0.3);
+}
+
+.tagAssumed {
+  color: #e0a94a;
+  background: rgba(224, 169, 74, 0.12);
+  border: 1px solid rgba(224, 169, 74, 0.3);
+}
+
 .assumptionValue {
   font-family: var(--font-data);
   color: #e0a94a;
   flex-shrink: 0;
+  margin-left: auto;
 }
 
 .assumptionNote {
