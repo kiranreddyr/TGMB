@@ -6,6 +6,8 @@ import type { AgeStructureByCountry } from "./ageStructureClient.js";
 
 export interface CityPayload {
   id: string;
+  /** City-name-only slug for /city/[slug] permalinks — safe because all 213 tracked city names are currently unique; buildPayload throws if that ever stops being true. */
+  slug: string;
   name: string;
   country: string;
   lat: number;
@@ -40,6 +42,8 @@ export interface CityPayload {
     temperatureMin: number;
     precipitationProbabilityMax: number;
   }>;
+  /** First hour in the next 7 days scoring "Peak melt" (>=85) — null if none this week. */
+  nextPeakWindow: { time: string; score: number } | null;
 }
 
 export interface MeltPayload {
@@ -58,18 +62,28 @@ export function slugify(name: string, country: string): string {
     .replace(/^-+|-+$/g, "");
 }
 
+export function citySlug(name: string): string {
+  return name
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[̀-ͯ]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
 export function buildPayload(
   weather: CityWeather[],
   holidays: HolidaysByCountry = new Map(),
   ageStructure: AgeStructureByCountry = new Map(),
 ): MeltPayload {
-  const cities: CityPayload[] = weather.map(({ city, current, forward, daily, stale }) => {
+  const cities: CityPayload[] = weather.map(({ city, current, forward, daily, nextPeakWindow, stale }) => {
     const result = computeMeltScore(current.inputs);
     const countryHolidays = holidays.get(city.countryCode) ?? null;
     const todayLocalDate = current.time.split("T")[0] ?? "";
     const matchedHoliday = countryHolidays ? holidayOn(countryHolidays, todayLocalDate) : null;
     return {
       id: slugify(city.name, city.country),
+      slug: citySlug(city.name),
       name: city.name,
       country: city.country,
       lat: city.lat,
@@ -100,8 +114,19 @@ export function buildPayload(
         temperatureMin: Math.round(day.temperatureMin * 10) / 10,
         precipitationProbabilityMax: day.precipitationProbabilityMax,
       })),
+      nextPeakWindow: nextPeakWindow ? { time: nextPeakWindow.time, score: Math.round(nextPeakWindow.score) } : null,
     };
   });
+
+  const seenSlugs = new Set<string>();
+  for (const city of cities) {
+    if (seenSlugs.has(city.slug)) {
+      throw new Error(
+        `City slug collision: "${city.slug}" (from "${city.name}") is no longer unique — /city/${city.slug} permalinks require unique city names.`,
+      );
+    }
+    seenSlugs.add(city.slug);
+  }
 
   return {
     generatedAt: new Date().toISOString(),

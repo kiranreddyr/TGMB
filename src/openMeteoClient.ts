@@ -1,5 +1,6 @@
 import type { City } from "./types.js";
 import type { WeatherInputs } from "./scoreEngine.js";
+import { computeMeltScore } from "./scoreEngine.js";
 
 const FORECAST_ENDPOINT = "https://api.open-meteo.com/v1/forecast";
 
@@ -72,8 +73,13 @@ export interface CityWeather {
   forward: HourPoint[];
   /** Up to 7 daily points starting today, for a basic multi-day outlook. */
   daily: DayPoint[];
+  /** First hour in the next 7 days scoring "Peak melt" (>=85), scanned at full hourly precision even though only this one result ships — null if none this week. */
+  nextPeakWindow: { time: string; score: number } | null;
   stale: boolean;
 }
+
+/** Score at/above this counts as the "perfect ice cream hour" for share-worthy framing — matches the Peak melt band floor. */
+const NEXT_PEAK_SCORE_THRESHOLD = 85;
 
 export interface FetchOptions {
   batchSize?: number;
@@ -163,11 +169,28 @@ function toCityWeather(city: City, data: OpenMeteoHourlyResponse): CityWeather {
     precipitationProbabilityMax: at(data.daily.precipitation_probability_max, i, city.name),
   }));
 
+  // Scans the full week of hourly data Open-Meteo already returned (not
+  // just the 48h `forward` slice) for the next hour crossing into "Peak
+  // melt" — real hourly precision in the search, even though only the one
+  // winning hour is kept, to avoid shipping a full week of hourly points
+  // to every city in the payload.
+  let nextPeakWindow: { time: string; score: number } | null = null;
+  const weekEnd = data.hourly.time.length;
+  for (let i = index; i < weekEnd; i++) {
+    const point = pointAt(i);
+    const score = computeMeltScore(point.inputs).score;
+    if (score >= NEXT_PEAK_SCORE_THRESHOLD) {
+      nextPeakWindow = { time: point.time, score };
+      break;
+    }
+  }
+
   return {
     city,
     current: pointAt(index),
     forward,
     daily,
+    nextPeakWindow,
     stale,
   };
 }

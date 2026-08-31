@@ -4,6 +4,8 @@
 
 export interface CityPayload {
   id: string;
+  /** City-name-only slug for /city/[slug] permalinks. */
+  slug: string;
   name: string;
   country: string;
   lat: number;
@@ -38,6 +40,8 @@ export interface CityPayload {
     temperatureMin: number;
     precipitationProbabilityMax: number;
   }>;
+  /** First hour in the next 7 days scoring "Peak melt" (>=85) — null if none this week. */
+  nextPeakWindow: { time: string; score: number } | null;
 }
 
 export interface MeltPayload {
