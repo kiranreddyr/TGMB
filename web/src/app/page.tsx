@@ -7,11 +7,13 @@ import GlobeLegend from "@/components/GlobeLegend";
 import IntroSection from "@/components/IntroSection";
 import AnalysisPanel from "@/components/AnalysisPanel";
 import { useMeltPayload } from "@/lib/useMeltPayload";
+import { useVisitorCity } from "@/lib/useVisitorCity";
 import type { CityPayload } from "@/lib/payload";
 import styles from "./page.module.css";
 
 export default function Home() {
   const { payload, error, loading } = useMeltPayload();
+  const { city: visitorCity } = useVisitorCity(payload?.cities ?? []);
   const [selectedCity, setSelectedCity] = useState<CityPayload | null>(null);
   const [flyToTarget, setFlyToTarget] = useState<FlyToTarget | null>(null);
 
@@ -26,7 +28,7 @@ export default function Home() {
 
   return (
     <main className={styles.container}>
-      <IntroSection cityCount={payload?.cityCount ?? 0} topCity={topCity ?? null} />
+      <IntroSection cityCount={payload?.cityCount ?? 0} topCity={topCity ?? null} visitorCity={visitorCity} />
 
       <div className={styles.mainRow}>
         <div className={styles.globeSection}>

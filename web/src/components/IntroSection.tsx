@@ -1,14 +1,21 @@
 import Link from "next/link";
 import { colorForScore, type CityPayload } from "@/lib/payload";
+import { describeNextMeltWindow } from "@/lib/nextMeltWindow";
 import styles from "./IntroSection.module.css";
 
 interface IntroSectionProps {
   cityCount: number;
   topCity: CityPayload | null;
+  /** Nearest tracked city to the visitor's browser geolocation, when granted — leads the hero over the global top city. */
+  visitorCity: CityPayload | null;
 }
 
 /** Portion 1: hooks the reader in a few seconds, then invites them to scroll — the deep explanation lives on /methodology. */
-export default function IntroSection({ cityCount, topCity }: IntroSectionProps) {
+export default function IntroSection({ cityCount, topCity, visitorCity }: IntroSectionProps) {
+  const featuredCity = visitorCity ?? topCity;
+  const isVisitor = Boolean(visitorCity);
+  const meltWindow = featuredCity ? describeNextMeltWindow(featuredCity) : null;
+
   return (
     <section className={styles.section}>
       <div className={styles.backdrop} aria-hidden>
@@ -30,15 +37,26 @@ export default function IntroSection({ cityCount, topCity }: IntroSectionProps) 
 
         <p className={styles.hook}>Ice cream season never ends. It just moves.</p>
 
-        {topCity && (
-          <div className={styles.liveProof} style={{ borderColor: colorForScore(topCity.current.score) }}>
-            <span className={styles.liveProofScore} style={{ color: colorForScore(topCity.current.score) }}>
-              {Math.round(topCity.current.score)}
+        {featuredCity && (
+          <div className={styles.liveProof} style={{ borderColor: colorForScore(featuredCity.current.score) }}>
+            <span className={styles.liveProofScore} style={{ color: colorForScore(featuredCity.current.score) }}>
+              {Math.round(featuredCity.current.score)}
             </span>
-            <span className={styles.liveProofText}>
-              Right now it&rsquo;s <strong style={{ color: colorForScore(topCity.current.score) }}>{topCity.current.band.toLowerCase()}</strong>{" "}
-              in {topCity.name}, {topCity.country}.
-            </span>
+            <div className={styles.liveProofBody}>
+              <span className={styles.liveProofText}>
+                {isVisitor ? <>Near you, it&rsquo;s</> : <>Right now it&rsquo;s</>}{" "}
+                <strong style={{ color: colorForScore(featuredCity.current.score) }}>{featuredCity.current.band.toLowerCase()}</strong>{" "}
+                in {featuredCity.name}, {featuredCity.country}.
+              </span>
+              {meltWindow && !meltWindow.isNow && (
+                <span className={styles.liveProofWindow}>Next melt window: {meltWindow.label}.</span>
+              )}
+              {isVisitor && (
+                <Link href={`/city/${featuredCity.slug}`} className={styles.liveProofLink}>
+                  Full forecast for {featuredCity.name} →
+                </Link>
+              )}
+            </div>
           </div>
         )}
 
